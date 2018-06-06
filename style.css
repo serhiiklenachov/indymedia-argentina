@@ -1,0 +1,101 @@
+/*
+* Theme Name: Indymedia Argentina - Theme
+* Theme URI: https://argentina.indymedia.org/
+* Template: viral
+* Author: Indymedia Argentina
+* Author URI: https://argentina.indymedia.org/
+* Version: 1.0.0
+*/
+
+#header-cycler {
+	position: absolute;
+	overflow: hidden;
+	z-index: -1;
+}
+
+#header-cycler img {
+	position: absolute;
+	z-index: -5;
+	display: block;
+	width: 100vw;
+	min-height: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+#header-cycler img.active {
+	z-index: -3;
+}
+
+.vl-header {
+	padding: 0;
+}
+
+.vl-header > .vl-container {
+	padding: 25px 0;
+}
+
+.gallery.flexslider {
+	margin-bottom: 0;
+}
+
+.gallery-carrousel.flexslider {
+	margin-bottom: 15px;
+}
+
+.flex-nav-next, .flex-nav-prev {
+	line-height: normal;
+}
+
+.gallery-carrousel li > img {
+	display: block;
+	opacity: .5;
+	cursor: pointer;
+}
+
+.gallery-carrousel li > img {
+	display: block;
+	opacity: .5;
+	cursor: pointer;
+}
+
+.gallery-carrousel li.flex-active-slide > img {
+	opacity: 1;
+}
+
+.flex-direction-nav a:before {
+	color: rgba(255, 255, 255, 0.8);
+	text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+}
+
+.entry-social {
+	margin-bottom: 15px;
+}
+
+.category-logo {
+	width: 100%;
+	height: auto;
+}
+
+.category-social {
+	width: 100%;
+	padding: 10px;
+}
+
+.category-social > a {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+.category-social > a > i {
+	font-size: 1.1em;
+}
+
+.category.vl-main-header {
+	background-color: #eee;
+	text-align: center;
+}
+
+.category.vl-main-header h1 {
+	padding-top: 15px;
+}
