@@ -4,7 +4,7 @@ get_header();
 ?>
 
 <div class="vl-container">
-	<header class="category vl-main-header">
+	<header class="category vl-main-header vl-clearfix">
 		<?php
 			$indymedia_category_image = get_theme_mod("indymedia_category_{$category->term_id}_image");
 
@@ -40,6 +40,12 @@ get_header();
 					}
 				}
 				echo '</div>';
+			}
+
+			$indymedia_category_editor = get_theme_mod("indymedia_category_{$category->term_id}_editor");
+
+			if ( $indymedia_category_editor ) {
+				echo '<div class="category-editor">' . $indymedia_category_editor . '</div>';
 			}
 		?>
 	</header>

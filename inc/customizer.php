@@ -2,6 +2,7 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 function indymedia_customize_register( $wp_customize ) {
+	include 'customizer_editor.php';
 	/**
 	 * Settings
 	 */

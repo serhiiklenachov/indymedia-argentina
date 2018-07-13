@@ -92,10 +92,18 @@
 }
 
 .category.vl-main-header {
-	background-color: #eee;
 	text-align: center;
 }
 
 .category.vl-main-header h1 {
 	padding-top: 15px;
+}
+
+.category .category-social {
+	background-color: #eee;
+}
+
+.category .category-editor {
+	background-color: #fff;
+	text-align: initial;
 }

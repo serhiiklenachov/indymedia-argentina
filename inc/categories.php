@@ -125,6 +125,28 @@ function indymedia_customize_categories_add_controls( $wp_customize, $category )
 		) 
 	);
 
+	$wp_customize->add_setting(
+		"indymedia_category_{$category}_editor",
+		array(
+			'default' => '',
+			'transport' => 'refresh',
+			'sanitize_callback' => 'wp_kses_post'
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Editor(
+			$wp_customize,
+			"indymedia_category_{$category}_editor_control",
+			array(
+				'label' => 'Texto en cabecera',
+				'section' => "indymedia_category_{$category}",
+				'settings' => "indymedia_category_{$category}_editor",
+				'type' => 'textarea'
+			)
+		)
+	);
+
 	$wp_customize->add_setting( 
 		"indymedia_category_{$category}_top_blocks",
 		array(
