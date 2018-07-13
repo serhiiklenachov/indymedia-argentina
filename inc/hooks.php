@@ -50,7 +50,6 @@ if(!function_exists('viral_top_section_style1')){
 			'cat' => $cat,
 			'posts_per_page' => 1,
 			'ignore_sticky_post' => true,
-			'offset' => 1,
 			'post__not_in'=> WP_Deduplicator::get()
 			);
 		$query = new WP_Query($args);
@@ -85,7 +84,6 @@ if(!function_exists('viral_top_section_style1')){
 			'cat' => $cat,
 			'posts_per_page' => 2,
 			'ignore_sticky_post' => true,
-			'offset' => 2,
 			'post__not_in'=> WP_Deduplicator::get()
 			);
 		$query = new WP_Query($args);
@@ -171,7 +169,6 @@ if(!function_exists('viral_top_section_style2')){
 				'cat' => $cat,
 				'posts_per_page' => 4,
 				'ignore_sticky_post' => true,
-				'offset' => 1,
 				'post__not_in'=> WP_Deduplicator::get()
 				);
 			$query = new WP_Query($args);
@@ -351,7 +348,6 @@ if(!function_exists('viral_middle_section_style1')){
 				'cat' => $cat,
 				'posts_per_page' => 5,
 				'ignore_sticky_post' => true,
-				'offset' => 1,
 				'post__not_in'=> WP_Deduplicator::get()
 				);
 			$query = new WP_Query($args);
@@ -600,7 +596,6 @@ if(!function_exists('viral_bottom_section_style1')){
 				'cat' => $cat,
 				'posts_per_page' => 4,
 				'ignore_sticky_post' => true,
-				'offset' => 1,
 				'post__not_in'=> WP_Deduplicator::get()
 				);
 			$query = new WP_Query($args);
