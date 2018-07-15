@@ -36,6 +36,18 @@ get_header();
 							case 'twitter':
 								echo '<a title="'.$indymedia_category_network->name.'" target="_blank" href="'.$indymedia_category_network->url.'" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i> '.$indymedia_category_network->name.'</a>';
 								break;
+							case 'instagram':
+								echo '<a title="'.$indymedia_category_network->name.'" target="_blank" href="'.$indymedia_category_network->url.'" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> '.$indymedia_category_network->name.'</a>';
+								break;
+							case 'youtube':
+								echo '<a title="'.$indymedia_category_network->name.'" target="_blank" href="'.$indymedia_category_network->url.'" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i> '.$indymedia_category_network->name.'</a>';
+								break;
+							case 'vimeo':
+								echo '<a title="'.$indymedia_category_network->name.'" target="_blank" href="'.$indymedia_category_network->url.'" target="_blank"><i class="fa fa-vimeo" aria-hidden="true"></i> '.$indymedia_category_network->name.'</a>';
+								break;
+							case 'pinterest':
+								echo '<a title="'.$indymedia_category_network->name.'" target="_blank" href="'.$indymedia_category_network->url.'" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i> '.$indymedia_category_network->name.'</a>';
+								break;
 						}
 					}
 				}

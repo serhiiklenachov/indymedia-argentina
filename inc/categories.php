@@ -109,6 +109,11 @@ function indymedia_customize_categories_add_controls( $wp_customize, $category )
 						'facebook'  => __( 'Facebook', 'viral' ),
 						'google'    => __( 'Google+', 'viral' ),
 						'twitter'   => __( 'Twitter', 'viral' ),
+						'instagram' => __( 'Instagram', 'viral' ),
+						'pinterest' => __( 'Pinterest', 'viral' ),
+						'youtube'   => __( 'YouTube', 'viral' ),
+						'vimeo'     => __( 'Vimeo', 'viral' ),
+						'youtube'   => __( 'YouTube', 'viral' ),
 					)
 				),
 				'name' => array(
