@@ -167,3 +167,12 @@ jQuery(function($) {
 }
 
 add_action( 'wp_footer', 'indymedia_footer', 22 );
+
+function viral_show_date(){
+	$viral_left_header_date = get_theme_mod('viral_left_header_date');
+	if($viral_left_header_date){ 
+		echo '<span><i class="fa fa-clock-o" aria-hidden="true"></i>';
+		echo date_i18n('l, F j');
+		echo '</span>';
+	} 
+}
