@@ -1,6 +1,6 @@
 <?php
 $category = get_queried_object();
-$offset = intval( $wp_query->query_vars['offset'] );
+$offset = intval( $_GET['offset'] );
 $ppp = get_option('posts_per_page');
 $page_offset = $offset + ( ($wp_query->query_vars['paged'] - 2) * $ppp );
 
@@ -11,6 +11,7 @@ $query = new WP_Query( array(
 
 ?>
 	<div id="primary" class="content-area">
+		<br />
 		<header class="vl-main-header">
 			<?php
 				the_archive_title( '<h1>', '</h1>' );
