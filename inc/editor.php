@@ -20,7 +20,11 @@ function indymedia_highlights_meta_box( $post ) {
 	wp_nonce_field( 'indymedia_highlights_action', 'indymedia_highlights' );
 
 	$highlights = get_post_meta( $post->ID, 'highlights' );
-	$highlights = array_map( 'intval', $highlights[0] );
+	if( !empty( $highlights ) ) {
+		$highlights = array_map( 'intval', $highlights[0] );
+	} else {
+		$highlights = array();
+	}
 
 	$walker = new Indymedia_Walker_Category_Checklist;
 ?>

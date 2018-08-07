@@ -6,7 +6,7 @@ if(!function_exists( 'viral_top_section_style1' ) ) {
 
 		$layout = $args['layout'];
 		$cat = $args['cat'];
-		$highlight = $args['highlight'] == 'on';
+		$highlight = isset($args['highlight']) && $args['highlight'] == 'on';
 		?>
 		<div class="vl-top-block vl-clearfix <?php echo esc_attr($layout); ?>">
 		<div class="vl-half-container">
@@ -148,7 +148,7 @@ if(!function_exists( 'viral_top_section_style2' ) ) {
 
 		$layout = $args['layout'];
 		$cat = $args['cat'];
-		$highlight = $args['highlight'] == 'on';
+		$highlight = isset($args['highlight']) && $args['highlight'] == 'on';
 		?>
 		<div class="vl-top-block vl-clearfix <?php echo esc_attr($layout); ?>">
 			<div class="vl-half-container">
@@ -251,7 +251,7 @@ if(!function_exists( 'viral_top_section_style3' ) ) {
 		
 		$layout = $args['layout'];
 		$cat = $args['cat'];
-		$highlight = $args['highlight'] == 'on';
+		$highlight = isset($args['highlight']) && $args['highlight'] == 'on';
 	?>
 	<div class="vl-top-block vl-clearfix <?php echo esc_attr($layout); ?>">
 		<?php
@@ -306,7 +306,7 @@ if(!function_exists( 'viral_top_section_style4' ) ){
 
 		$layout = $args['layout'];
 		$cat = $args['cat'];
-		$highlight = $args['highlight'] == 'on';
+		$highlight = isset($args['highlight']) && $args['highlight'] == 'on';
 	?>
 	<div class="vl-top-block vl-clearfix <?php echo esc_attr($layout); ?>">
 		<?php
