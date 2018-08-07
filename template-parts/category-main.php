@@ -69,11 +69,10 @@ if ( $indymedia_category_top_blocks ) {
 	foreach ($indymedia_category_top_blocks as $indymedia_category_top_block) {
 
 		if ( $category->term_id && ($indymedia_category_top_block->enable == 'on' )){
-			$indymedia_layout = $indymedia_category_top_block->layout;
-			
 			$args = array(
 				'cat' => $category->term_id,
-				'layout' => $indymedia_layout
+				'layout' => $indymedia_category_top_block->layout,
+				'highlight' => $indymedia_category_top_block->highlight
 				);
 
 			do_action('viral_top_section', $args);

@@ -1,6 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) exit;
 
+include get_stylesheet_directory() . '/inc/editor.php';
 include get_stylesheet_directory() . '/inc/customizer.php';
 include get_stylesheet_directory() . '/inc/categories.php';
 include get_stylesheet_directory() . '/inc/deduplicator.php';

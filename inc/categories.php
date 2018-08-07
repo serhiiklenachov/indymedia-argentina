@@ -159,6 +159,7 @@ function indymedia_customize_categories_add_controls( $wp_customize, $category )
 			array(
 				'category' => '0',
 				'layout' => 'style1',
+				'highlight' => 'off',
 				'enable' => 'on'
 				)
 		))
@@ -187,6 +188,15 @@ function indymedia_customize_categories_add_controls( $wp_customize, $category )
 						'style4' => $image_path_url.'top-layout4.png',
 						),
 					'default'     => 'style1'
+				),
+				'highlight' => array(
+					'type'        => 'switch',
+					'label'       => __( 'Destacados', 'indymedia' ),
+					'switch' => array(
+						'on' => 'Si',
+						'off' => 'No'
+						),
+					'default'     => 'off'
 				),
 				'enable' => array(
 					'type'        => 'switch',

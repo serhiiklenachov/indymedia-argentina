@@ -1,10 +1,12 @@
 <?php
 
-if(!function_exists('viral_top_section_style1')){
+if(!function_exists( 'viral_top_section_style1' ) ) {
 	function viral_top_section_style1( $args ){
+		if( $args['layout'] != 'style1' ) return;
+
 		$layout = $args['layout'];
 		$cat = $args['cat'];
-		if($layout != 'style1') return;
+		$highlight = $args['highlight'] == 'on';
 		?>
 		<div class="vl-top-block vl-clearfix <?php echo esc_attr($layout); ?>">
 		<div class="vl-half-container">
@@ -14,7 +16,14 @@ if(!function_exists('viral_top_section_style1')){
 			'posts_per_page' => 1,
 			'ignore_sticky_post' => true,
 			'post__not_in' => WP_Deduplicator::get()
-			);
+		);
+
+		if ( $highlight ) {
+			$args['meta_key'] = 'highlights';
+			$args['meta_value'] = serialize( strval( $cat ) );
+			$args['meta_compare'] = 'LIKE';
+		}
+
 		$query = new WP_Query($args);
 
 		while($query->have_posts()):
@@ -51,7 +60,14 @@ if(!function_exists('viral_top_section_style1')){
 			'posts_per_page' => 1,
 			'ignore_sticky_post' => true,
 			'post__not_in'=> WP_Deduplicator::get()
-			);
+		);
+
+		if ( $highlight ) {
+			$args['meta_key'] = 'highlights';
+			$args['meta_value'] = serialize( strval( $cat ) );
+			$args['meta_compare'] = 'LIKE';
+		}
+
 		$query = new WP_Query($args);
 
 		while($query->have_posts()):
@@ -85,7 +101,14 @@ if(!function_exists('viral_top_section_style1')){
 			'posts_per_page' => 2,
 			'ignore_sticky_post' => true,
 			'post__not_in'=> WP_Deduplicator::get()
-			);
+		);
+
+		if ( $highlight ) {
+			$args['meta_key'] = 'highlights';
+			$args['meta_value'] = serialize( strval( $cat ) );
+			$args['meta_compare'] = 'LIKE';
+		}
+
 		$query = new WP_Query($args);
 
 		while($query->have_posts()):
@@ -119,11 +142,13 @@ if(!function_exists('viral_top_section_style1')){
 	}
 }
 
-if(!function_exists('viral_top_section_style2')){
-	function viral_top_section_style2($args){
+if(!function_exists( 'viral_top_section_style2' ) ) {
+	function viral_top_section_style2( $args ){
+		if( $args['layout'] != 'style2' ) return;
+
 		$layout = $args['layout'];
 		$cat = $args['cat'];
-		if($layout != 'style2') return;
+		$highlight = $args['highlight'] == 'on';
 		?>
 		<div class="vl-top-block vl-clearfix <?php echo esc_attr($layout); ?>">
 			<div class="vl-half-container">
@@ -133,7 +158,14 @@ if(!function_exists('viral_top_section_style2')){
 				'posts_per_page' => 1,
 				'ignore_sticky_post' => true,
 				'post__not_in'=> WP_Deduplicator::get()
-				);
+			);
+
+			if ( $highlight ) {
+				$args['meta_key'] = 'highlights';
+				$args['meta_value'] = serialize( strval( $cat ) );
+				$args['meta_compare'] = 'LIKE';
+			}
+
 			$query = new WP_Query($args);
 
 			while($query->have_posts()):
@@ -170,7 +202,14 @@ if(!function_exists('viral_top_section_style2')){
 				'posts_per_page' => 4,
 				'ignore_sticky_post' => true,
 				'post__not_in'=> WP_Deduplicator::get()
-				);
+			);
+
+			if ( $highlight ) {
+				$args['meta_key'] = 'highlights';
+				$args['meta_value'] = serialize( strval( $cat ) );
+				$args['meta_compare'] = 'LIKE';
+			}
+
 			$query = new WP_Query($args);
 
 			if($query->have_posts()):
@@ -206,11 +245,13 @@ if(!function_exists('viral_top_section_style2')){
 	}
 }
 
-if(!function_exists('viral_top_section_style3')){
-	function viral_top_section_style3($args){
-	$layout = $args['layout'];
-	$cat = $args['cat'];
-	if($layout != 'style3') return;
+if(!function_exists( 'viral_top_section_style3' ) ) {
+	function viral_top_section_style3( $args ){
+		if( $args['layout'] != 'style3' ) return;
+		
+		$layout = $args['layout'];
+		$cat = $args['cat'];
+		$highlight = $args['highlight'] == 'on';
 	?>
 	<div class="vl-top-block vl-clearfix <?php echo esc_attr($layout); ?>">
 		<?php
@@ -219,7 +260,14 @@ if(!function_exists('viral_top_section_style3')){
 			'posts_per_page' => 4,
 			'ignore_sticky_post' => true,
 			'post__not_in'=> WP_Deduplicator::get()
-			);
+		);
+
+		if ( $highlight ) {
+			$args['meta_key'] = 'highlights';
+			$args['meta_value'] = serialize( strval( $cat ) );
+			$args['meta_compare'] = 'LIKE';
+		}
+
 		$query = new WP_Query($args);
 
 		while($query->have_posts()):
@@ -252,11 +300,13 @@ if(!function_exists('viral_top_section_style3')){
 	}
 }
 
-if(!function_exists('viral_top_section_style4')){
-	function viral_top_section_style4($args){
-	$layout = $args['layout'];
-	$cat = $args['cat'];
-	if($layout != 'style4') return;
+if(!function_exists( 'viral_top_section_style4' ) ){
+	function viral_top_section_style4( $args ) {
+		if( $args['layout'] != 'style4' ) return;
+
+		$layout = $args['layout'];
+		$cat = $args['cat'];
+		$highlight = $args['highlight'] == 'on';
 	?>
 	<div class="vl-top-block vl-clearfix <?php echo esc_attr($layout); ?>">
 		<?php
@@ -265,7 +315,14 @@ if(!function_exists('viral_top_section_style4')){
 			'posts_per_page' => 4,
 			'ignore_sticky_post' => true,
 			'post__not_in'=> WP_Deduplicator::get()
-			);
+		);
+
+		if ( $highlight ) {
+			$args['meta_key'] = 'highlights';
+			$args['meta_value'] = serialize( strval( $cat ) );
+			$args['meta_compare'] = 'LIKE';
+		}
+
 		$query = new WP_Query($args);
 
 		while($query->have_posts()):
@@ -306,7 +363,7 @@ if(!function_exists('viral_middle_section_style1')){
 			'posts_per_page' => 1,
 			'ignore_sticky_post' => true,
 			'post__not_in'=> WP_Deduplicator::get()
-			);
+		);
 		$query = new WP_Query($args);
 		?>
 		<div class="vl-middle-block vl-clearfix <?php echo esc_attr($layout); ?>">
