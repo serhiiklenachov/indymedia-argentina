@@ -39,7 +39,8 @@ function indymedia_gallery_output($output, $attr, $instance ) {
 		$carrousel .= "<li>";
 
 		$attr = ( trim( $attachment->post_excerpt ) ) ? array( 'aria-describedby' => "$selector-$id" ) : '';
-		$slider .= wp_get_attachment_image($id, 'medium_large', false, $attr );
+		$image_data = wp_get_attachment_image_src( $id, 'full', false );
+		$slider .= '<a href="' . $image_data[0] . '">' . wp_get_attachment_image( $id, 'medium_large', false, $attr ) . '</a>';
 		$carrousel .= wp_get_attachment_image($id, 'thumbnail', false, $attr );
 
 		$slider .= "</li>";
