@@ -34,8 +34,8 @@ class Indymedia_Walker_Category_Checklist extends Walker {
 				' tabindex="0" role="checkbox" aria-checked="' . $aria_checked . '">' .
 				esc_html( apply_filters( 'the_category', $category->name, '', '' ) ) . '</div>';
 		} else {
-			$output .= "\n<li id='category-{$category->term_id}'$class>" .
-				'<label class="selectit"><input value="' . $category->term_id . '" type="checkbox" name="highlights[]" id="in-category-' . $category->term_id . '"' .
+			$output .= "\n<li id='highlight-{$category->term_id}'$class>" .
+				'<label class="selectit"><input value="' . $category->term_id . '" type="checkbox" name="highlights[]" id="in-highlight-' . $category->term_id . '"' .
 				checked( in_array( $category->term_id, $args['selected_cats'] ), true, false ) .
 				disabled( empty( $args['disabled'] ), false, false ) . ' /> ' .
 				esc_html( apply_filters( 'the_category', $category->name, '', '' ) ) . '</label>';
