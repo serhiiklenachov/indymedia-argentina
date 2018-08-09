@@ -21,7 +21,6 @@ class WP_Customize_Editor extends WP_Customize_Control {
 						editor.on('Change', cb)
 						editor.on('Undo', cb)
 						editor.on('Redo', cb)
-						editor.on('KeyUp', cb) // Remove this if it seems like an overkill
 					}"
 				)
 			);

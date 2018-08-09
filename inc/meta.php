@@ -17,12 +17,19 @@ class Meta {
 		wp_nonce_field( 'indymedia_action', 'indymedia' );
 
 		$fuente = get_post_meta( $post->ID, 'fuente', true );
+		$correo = get_post_meta( $post->ID, 'correo', true );
 
 		if( empty( $fuente ) ) $fuente = '';
+		if( empty( $correo ) ) $correo = '';
 		?>
 			<p>
 				<label for="fuente">Organización, Colectivo, Sindicato, étc</label>
 				<input class="widefat" id="fuente" name="fuente" type="text" value="<?php echo $fuente ?>">
+			</p>
+			<p>
+				<label for="correo">Correo electrónico</label>
+				<input class="widefat" id="correo" name="correo" type="text" value="<?php echo $correo ?>">
+				<span class="howto">La dirección de correo electrónico ingresada será mostrada públicamente.</span>
 			</p>
 		<?php
 	}
@@ -47,19 +54,23 @@ class Meta {
 			return;
 
 		$fuente = isset( $_POST[ 'fuente' ] ) ? sanitize_text_field( $_POST[ 'fuente' ] ) : '';
+		$correo = isset( $_POST[ 'correo' ] ) ? sanitize_email( $_POST[ 'correo' ] ) : '';
 
 		update_post_meta( $post_id, 'fuente', $fuente );
+		update_post_meta( $post_id, 'correo', $correo );
 
 	}
 
 	public static function columns_render( $column, $post_id )	 {
 		$data = '';
 		
-		if ( $column == 'fuente' )
+		if ( $column == 'fuente' ) {
 				$data = get_post_meta( $post_id, 'fuente', true );
+		}
 
-		if ( !$data )
+		if ( !$data ) {
 			return '';
+		}
 
 		echo esc_html($data);
 	}
