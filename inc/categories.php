@@ -12,7 +12,7 @@ function indymedia_customize_categories( $wp_customize ) {
 	$wp_customize->add_panel(
 		'indymedia_categories_panel',
 		array(
-			'title' 			=> __( 'Categorias', 'viral' ),
+			'title' 			=> __( 'Categorias', 'indymedia' ),
 			'priority'          => 21
 		)
 	);
@@ -95,34 +95,34 @@ function indymedia_customize_categories_add_controls( $wp_customize, $category )
 			$wp_customize, 
 			"indymedia_category_{$category}_social_control",
 			array(
-				'label'   => __('Redes sociales','viral'),
+				'label'   => __('Redes sociales', 'indymedia'),
 				'section' => "indymedia_category_{$category}",
 				'settings' => "indymedia_category_{$category}_social",
-				'viral_box_label' => __('Redes Sociales','viral'),
-				'viral_box_add_control' => __('Agregar Red Social','viral'),
+				'viral_box_label' => __('Redes Sociales','indymedia'),
+				'viral_box_add_control' => __('Agregar Red Social','indymedia'),
 			),
 			array(
 				'type' => array(
 					'type'          => 'select',
-					'label'         => __( 'Red Social', 'viral' ),
+					'label'         => __( 'Red Social', 'indymedia' ),
 					'options'       => array(
-						'facebook'  => __( 'Facebook', 'viral' ),
-						'google'    => __( 'Google+', 'viral' ),
-						'twitter'   => __( 'Twitter', 'viral' ),
-						'instagram' => __( 'Instagram', 'viral' ),
-						'pinterest' => __( 'Pinterest', 'viral' ),
-						'vimeo'     => __( 'Vimeo', 'viral' ),
-						'youtube'   => __( 'YouTube', 'viral' ),
+						'facebook'  => __( 'Facebook', 'indymedia' ),
+						'google'    => __( 'Google+', 'indymedia' ),
+						'twitter'   => __( 'Twitter', 'indymedia' ),
+						'instagram' => __( 'Instagram', 'indymedia' ),
+						'pinterest' => __( 'Pinterest', 'indymedia' ),
+						'vimeo'     => __( 'Vimeo', 'indymedia' ),
+						'youtube'   => __( 'YouTube', 'indymedia' ),
 					)
 				),
 				'name' => array(
 					'type'        => 'text',
-					'label'       => __( 'Nombre', 'viral' ),
+					'label'       => __( 'Nombre', 'indymedia' ),
 					'default'     => ''
 				),
 				'url' => array(
 					'type'        => 'text',
-					'label'       => __( 'URL', 'viral' ),
+					'label'       => __( 'URL', 'indymedia' ),
 					'default'     => ''
 				),
 			)
@@ -170,7 +170,7 @@ function indymedia_customize_categories_add_controls( $wp_customize, $category )
 			$wp_customize, 
 			"indymedia_category_{$category}_top_blocks_control",
 			array(
-				'label'   => __('Bloques de cabecera','viral'),
+				'label'   => __('Bloques de cabecera','indymedia'),
 				'section' => "indymedia_category_{$category}",
 				'settings' => "indymedia_category_{$category}_top_blocks",
 				'viral_box_label' => __('News Section','viral'),
@@ -229,7 +229,7 @@ function indymedia_customize_categories_add_controls( $wp_customize, $category )
 			$wp_customize, 
 			"indymedia_category_{$category}_middle_blocks_control",
 			array(
-				'label'   => __('Bloques de contenido','viral'),
+				'label'   => __('Bloques de contenido','indymedia'),
 				'section' => "indymedia_category_{$category}",
 				'settings' => "indymedia_category_{$category}_middle_blocks",
 				'viral_box_label' => __('News Section','viral'),

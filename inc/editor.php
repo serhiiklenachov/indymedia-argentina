@@ -6,7 +6,7 @@ function indymedia_post_meta_boxes_setup() {
 
 	add_meta_box(
 		'indymedia_highlights',
-		__('Destacar'),
+		__( 'Destacar', 'indymedia' ),
 		'indymedia_highlights_meta_box',
 		'post',
 		'side',

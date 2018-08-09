@@ -379,7 +379,7 @@ function indymedia_customize_register( $wp_customize ) {
 			$wp_customize,
 			'background_header_images',
 			array(
-				'label'				=> __( 'Imágenes', 'justwrite' ),
+				'label'				=> __( 'Imágenes', 'indymedia' ),
 				'section'			=> 'viral_header_settings_sec',
 				'settings'			=> 'indymedia_background_header_images',
 			)
@@ -391,8 +391,8 @@ function indymedia_customize_register( $wp_customize ) {
 			$wp_customize,
 			'background_header_counter',
 			array(
-				'label'				=> __('Retardo', 'justwrite' ),
-				'description'		=> __('Tiempo en milisegundos que se verá cada imagen en la cabecera'),
+				'label'				=> __( 'Retardo', 'indymedia' ),
+				'description'		=> __( 'Tiempo en milisegundos que se verá cada imagen en la cabecera', 'indymedia' ),
 				'section'			=> 'viral_header_settings_sec',
 				'settings'			=> 'indymedia_background_header_counter',
 				'type'				=> 'number',
