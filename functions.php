@@ -180,7 +180,7 @@ function viral_show_date(){
 
 function indymedia_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Página principal', 'indymedia' ),
+		'name'          => esc_html__( 'Cabecera página principal', 'indymedia' ),
 		'id'            => 'indymedia-frontpage',
 		'description'   => 'Parte superior de la página principal, entre el teletipo y las noticias destacadas',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
