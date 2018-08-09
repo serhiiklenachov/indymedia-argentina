@@ -12,7 +12,7 @@
 
 		the_posts_pagination( array(
 			'add_args' => array(
-				'offset' => count( $wp_query->post_count )
+				'offset' => $wp_query->post_count
 			) )
 		);
 	}
