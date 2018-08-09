@@ -1,13 +1,21 @@
 <?php
 $category = get_queried_object();
-$offset = intval( $_GET['offset'] );
-$ppp = get_option('posts_per_page');
-$page_offset = $offset + ( ($wp_query->query_vars['paged'] - 2) * $ppp );
 
-$query = new WP_Query( array(
-	'cat'=> $category->term_id,
-	'offset' => $page_offset
-) );
+if ( isset( $_GET['offset'] ) ) {
+	$offset = intval( $_GET['offset'] );
+	$ppp = get_option('posts_per_page');
+	$page_offset = $offset + ( ($wp_query->query_vars['paged'] - 2) * $ppp );
+}
+
+$args = array(
+	'cat'=> $category->term_id
+);
+
+if ( isset($page_offset) ) {
+	$args['offset'] = $page_offset;
+}
+
+$query = new WP_Query( $args );
 
 ?>
 	<div id="primary" class="content-area">

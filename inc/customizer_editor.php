@@ -5,11 +5,11 @@ class WP_Customize_Editor extends WP_Customize_Control {
 
 	public function render_content() { ?>
 		<label>
-		  <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-		  <?php
+			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+			<?php
 			$this->filter_editor_setting_link();
 			wp_editor($this->value(), $this->id, array() );
-		  ?>
+		?>
 		</label>
 	<?php
 		do_action('admin_footer');
@@ -20,4 +20,3 @@ class WP_Customize_Editor extends WP_Customize_Control {
 		add_filter( 'the_editor', function( $output ) { return preg_replace( '/<textarea/', '<textarea ' . $this->get_link(), $output, 1 ); } );
 	}
 }
-

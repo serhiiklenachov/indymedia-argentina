@@ -26,7 +26,7 @@ function viral_post_date() {
 
 }
 
-function viral_social_share( $title = true ) {
+function viral_social_share() {
 	global $post;
 
 	$post_url = get_permalink();
@@ -49,8 +49,8 @@ function viral_social_share( $title = true ) {
 	$content .= '<a title="'.__('Share on GooglePlus', 'viral').'" target="_blank" href="' . esc_url( $googleURL ) . '" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>';
 	$content .= '<a title="'.__('Share on Pinterest', 'viral').'" target="_blank" href="' . esc_url( $pinterestURL ) . '" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>';
 	$content .= '<a title="'.__('Email', 'viral').'" target="_blank" href="' . esc_url( $mailURL ) . '"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
-	$content .= '<a title="'.__('Compartir en WhatsApp', 'viral').'" target="_blank" href="' . esc_url( $whatsappURL ) . '" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>';
-	$content .= '<a title="'.__('Compartir en Telegram', 'viral').'" target="_blank" href="' . esc_url( $telegramURL ) . '" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i></a>';
+	$content .= '<a title="'.__('Compartir en WhatsApp', 'indymedia').'" target="_blank" href="' . esc_url( $whatsappURL ) . '" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>';
+	$content .= '<a title="'.__('Compartir en Telegram', 'indymedia').'" target="_blank" href="' . esc_url( $telegramURL ) . '" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i></a>';
 	$content .= '</div>';
 
 	echo $content;
