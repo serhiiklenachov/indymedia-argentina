@@ -177,3 +177,16 @@ function viral_show_date(){
 		echo '</span>';
 	} 
 }
+
+function indymedia_widgets_init() {
+	register_sidebar( array(
+		'name'          => esc_html__( 'Página principal', 'indymedia' ),
+		'id'            => 'indymedia-frontpage',
+		'description'   => 'Parte superior de la página principal, entre el teletipo y las noticias destacadas',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+}
+add_action( 'widgets_init', 'indymedia_widgets_init' );
