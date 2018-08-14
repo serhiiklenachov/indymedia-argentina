@@ -190,3 +190,16 @@ function indymedia_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'indymedia_widgets_init' );
+
+function viral_excerpt( $content , $letter_count ){
+	$content = strip_shortcodes( $content );
+	$content = strip_tags( $content );
+
+	if( strlen( $content ) > $letter_count ){
+		$white = mb_stripos( $content, ' ', $letter_count - 1);
+		$content = mb_substr( $content, 0 , $white );
+		$content .= "...";
+	}
+
+	return $content;
+}
