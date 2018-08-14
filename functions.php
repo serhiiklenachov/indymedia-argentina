@@ -196,8 +196,8 @@ function viral_excerpt( $content , $letter_count ){
 	$content = strip_tags( $content );
 
 	if( strlen( $content ) > $letter_count ){
-		$white = mb_stripos( $content, ' ', $letter_count - 1);
-		$content = mb_substr( $content, 0 , $white );
+		$white = stripos( $content, ' ', $letter_count - 1);
+		$content = substr( $content, 0 , $white );
 		$content .= "...";
 	}
 
