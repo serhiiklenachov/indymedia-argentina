@@ -4,9 +4,11 @@
  */
 
 ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class('vl-article-content'); ?>>
 	<header class="entry-header">
+		<div class="entry-social">
+			<?php viral_social_share( false ) ?>
+		</div>
 		<?php viral_post_date(); ?>
 	</header>
 	
@@ -20,10 +22,6 @@
 		?>
 	</div>
 	
-	<div class="entry-social">
-		<?php viral_social_share() ?>
-	</div>
-
 	<footer class="entry-footer">
 		<?php viral_entry_footer(); ?>
 	</footer><!-- .entry-footer -->

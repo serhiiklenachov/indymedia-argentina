@@ -69,7 +69,8 @@
 }
 
 .entry-social {
-	margin-bottom: 15px;
+	margin: 0;
+	float: right;
 }
 
 .category-logo {

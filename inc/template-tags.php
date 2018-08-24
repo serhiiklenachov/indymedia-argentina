@@ -26,7 +26,7 @@ function viral_post_date() {
 
 }
 
-function viral_social_share() {
+function viral_social_share( $title = true ) {
 	global $post;
 
 	$post_url = get_permalink();
@@ -43,7 +43,9 @@ function viral_social_share() {
 	$telegramURL = 'https://t.me/share/url?url=' . $post_url . '&amp;text=' . $post_title;
 
 	$content = '<div class="vl-share-buttons">';
-	$content .= '<span>'. __( 'SHARE', 'viral' ) .'</span>';
+	if ( $title ) {
+		$content .= '<span>'. __( 'SHARE', 'viral' ) .'</span>';
+	}
 	$content .= '<a title="'.__('Share on Facebook', 'viral').'" target="_blank" href="' . esc_url( $facebookURL ) . '" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>';
 	$content .= '<a title="'.__('Share on Twitter', 'viral').'" target="_blank" href="' . esc_url( $twitterURL ) .'" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>';
 	$content .= '<a title="'.__('Share on GooglePlus', 'viral').'" target="_blank" href="' . esc_url( $googleURL ) . '" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>';
