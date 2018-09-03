@@ -113,6 +113,12 @@ function indymedia_enqueue_dynamic_css() {
 	if ( $entry_content_font ) {
 		$font_data = explode(':', $entry_content_font);
 		$css .= 'article .entry-content{ font-family: ' . $font_data[0] . ' }';
+		$css .= 'article .entry-content h1{ font-family: ' . $font_data[0] . ' }';
+		$css .= 'article .entry-content h2{ font-family: ' . $font_data[0] . ' }';
+		$css .= 'article .entry-content h3{ font-family: ' . $font_data[0] . ' }';
+		$css .= 'article .entry-content h4{ font-family: ' . $font_data[0] . ' }';
+		$css .= 'article .entry-content h5{ font-family: ' . $font_data[0] . ' }';
+		$css .= 'article .entry-content h6{ font-family: ' . $font_data[0] . ' }';
 	}
 
 	if ( $top_header_font ) {

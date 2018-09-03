@@ -54,6 +54,12 @@
 		value.bind( function( to ) {
 			font = to.split(':')[0];
 			$('article .entry-content').css( { 'font-family': font } );
+			$('article .entry-content h1').css( { 'font-family': font } );
+			$('article .entry-content h2').css( { 'font-family': font } );
+			$('article .entry-content h3').css( { 'font-family': font } );
+			$('article .entry-content h4').css( { 'font-family': font } );
+			$('article .entry-content h5').css( { 'font-family': font } );
+			$('article .entry-content h6').css( { 'font-family': font } );
 		});
 	});
 
