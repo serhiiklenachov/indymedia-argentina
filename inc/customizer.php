@@ -132,6 +132,14 @@ function indymedia_customize_register( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_setting(
+		'viral_social_telegram',
+		array(
+			'default'			=> '',
+			'sanitize_callback' => 'esc_url_raw'
+		)
+	);
+
 	/**
 	 * Sections
 	 */
@@ -397,6 +405,16 @@ function indymedia_customize_register( $wp_customize ) {
 				'settings'			=> 'indymedia_background_header_counter',
 				'type'				=> 'number',
 			)
+		)
+	);
+
+	$wp_customize->add_control(
+		'viral_social_telegram',
+		array(
+			'settings'		=> 'viral_social_telegram',
+			'section'		=> 'viral_social_icons_sec',
+			'type'			=> 'url',
+			'label'			=> __( 'Telegram', 'indymedia' )
 		)
 	);
 }

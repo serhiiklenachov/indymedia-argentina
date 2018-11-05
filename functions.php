@@ -209,3 +209,38 @@ function viral_excerpt( $content , $letter_count ){
 
 	return $content;
 }
+
+function viral_social_links(){
+	$telegram = get_theme_mod('viral_social_telegram');
+	$facebook = get_theme_mod('viral_social_facebook');
+	$twitter = get_theme_mod('viral_social_twitter');
+	$google_plus = get_theme_mod('viral_social_google_plus');
+	$pinterest = get_theme_mod('viral_social_pinterest');
+	$youtube = get_theme_mod('viral_social_youtube');
+	$linkedin = get_theme_mod('viral_social_linkedin');
+	$instagram = get_theme_mod('viral_social_instagram');
+
+	if($telegram)
+		echo '<a class="vl-telegram" href="'.esc_url( $telegram ).'" target="_blank"><i class="fa fa-telegram"></i></a>';
+
+	if($facebook)
+		echo '<a class="vl-facebook" href="'.esc_url( $facebook ).'" target="_blank"><i class="fa fa-facebook"></i></a>';
+
+	if($twitter)
+		echo '<a class="vl-twitter" href="'.esc_url( $twitter ).'" target="_blank"><i class="fa fa-twitter"></i></a>';
+
+	if($google_plus)
+		echo '<a class="vl-googleplus" href="'.esc_url( $google_plus ).'" target="_blank"><i class="fa fa-google-plus"></i></a>';
+
+	if($pinterest)
+		echo '<a class="vl-pinterest" href="'.esc_url( $pinterest ).'" target="_blank"><i class="fa fa-pinterest"></i></a>';
+
+	if($youtube)
+		echo '<a class="vl-youtube" href="'.esc_url( $youtube ).'" target="_blank"><i class="fa fa-youtube"></i></a>';
+
+	if($linkedin)
+		echo '<a class="vl-linkedin" href="'.esc_url( $linkedin ).'" target="_blank"><i class="fa fa-linkedin"></i></a>';
+
+	if($instagram)
+		echo '<a class="vl-instagram" href="'.esc_url( $instagram ).'" target="_blank"><i class="fa fa-instagram"></i></a>';
+}
