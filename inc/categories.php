@@ -111,6 +111,7 @@ function indymedia_customize_categories_add_controls( $wp_customize, $category )
 						'twitter'   => __( 'Twitter', 'indymedia' ),
 						'instagram' => __( 'Instagram', 'indymedia' ),
 						'pinterest' => __( 'Pinterest', 'indymedia' ),
+						'telegram'  => __( 'Telegram', 'indymedia' ),
 						'vimeo'     => __( 'Vimeo', 'indymedia' ),
 						'youtube'   => __( 'YouTube', 'indymedia' ),
 					)

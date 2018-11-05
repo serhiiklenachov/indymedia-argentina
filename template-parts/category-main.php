@@ -43,6 +43,9 @@
 						case 'pinterest':
 							echo '<a title="'.$indymedia_category_network->name.'" target="_blank" href="'.$indymedia_category_network->url.'" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i> '.$indymedia_category_network->name.'</a>';
 							break;
+						case 'telegram':
+							echo '<a title="'.$indymedia_category_network->name.'" target="_blank" href="'.$indymedia_category_network->url.'" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i> '.$indymedia_category_network->name.'</a>';
+							break;
 					}
 				}
 			}
