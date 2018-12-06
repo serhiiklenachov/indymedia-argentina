@@ -102,8 +102,9 @@ jQuery(window).on('load',function() {
 				slideNav.append(imgNav);
 
 				var slideMain = jQuery('<li />');
-				var linkMain = 
-				slideMain.append(imgMain);
+				var linkMain = jQuery('<a href=' + srcMain + ' />');
+				linkMain.append(imgMain);
+				slideMain.append(linkMain);
 
 				sliderNav.addSlide(slideNav);
 				sliderMain.addSlide(slideMain);
