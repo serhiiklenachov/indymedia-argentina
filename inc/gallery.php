@@ -18,9 +18,11 @@ function indymedia_gallery_output($output, $attr, $instance ) {
 	} else {
 		$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $attr['order'], 'orderby' => $attr['orderby'] ) );
 	}
+
 	if ( empty( $attachments ) ) {
 		return '';
 	}
+
 	if ( is_feed() ) {
 		$output = "\n";
 		foreach ( $attachments as $att_id => $attachment ) {
@@ -28,33 +30,37 @@ function indymedia_gallery_output($output, $attr, $instance ) {
 		}
 		return $output;
 	}
-	
+
 	$selector = "gallery-{$instance}";
 
 	$slider = "<div id='$selector' class='gallery flexslider'><ul class='slides'>";
 	$carrousel = "<div id='$selector-carrousel' class='gallery-carrousel flexslider'><ul class='slides'>";
-	
-	foreach ( $attachments as $id => $attachment ) {
-		$slider .= "<li>";
-		$carrousel .= "<li>";
 
-		$attr = ( trim( $attachment->post_excerpt ) ) ? array( 'aria-describedby' => "$selector-$id" ) : '';
-		$image_data = wp_get_attachment_image_src( $id, 'full', false );
-		$slider .= '<a href="' . $image_data[0] . '">' . wp_get_attachment_image( $id, 'medium_large', false, $attr ) . '</a>';
-		$carrousel .= wp_get_attachment_image($id, 'thumbnail', false, $attr );
+	$slide = reset($attachments);
 
-		$slider .= "</li>";
-		$carrousel .= "</li>";
-	}
+	$attr = ( trim( $slide->post_excerpt ) ) ? array( 'aria-describedby' => "$selector-$slide->ID" ) : '';
+	$image_data = wp_get_attachment_image_src( $slide->ID, 'full', false );
+
+	$slider .= "<li><a href='" . $image_data[$att_id] . "'>" . wp_get_attachment_image( $slide->ID, 'full', false, $attr ) . "</a></li>";
+	$carrousel .= "<li>" . wp_get_attachment_image($slide->ID, 'thumbnail', false, $attr ) . "</li>";
 
 	$slider .= "</ul></div>";
 	$carrousel .= "</ul></div>";
 
-	$loader = "<div class='$selector-loader loading'><h3>Cargando galería...</h3></div>";
+	next($attachments);
+
+	$leftMain = array();
+	$leftNav = array();
+	while (list($key, $slide) = each($attachments)) {
+		array_push($leftMain, wp_get_attachment_image_src($slide->ID, 'full', false)[0]);
+		array_push($leftNav, wp_get_attachment_image_src($slide->ID, 'thumbnail', false)[0]);
+	}
 
 $script = "
 <script type='text/javascript'>
 jQuery(window).on('load',function() {
+	var leftMain = " . json_encode($leftMain) . ";
+	var leftNav = " . json_encode($leftNav) . ";
 
 	jQuery('#$selector-carrousel').flexslider({
 		animation: 'slide',
@@ -75,15 +81,42 @@ jQuery(window).on('load',function() {
 		controlNav: false,
 		smoothHeight: true,
 		sync: '#$selector-carrousel',
-		start: function(slider) {
-			jQuery('.$selector-loader').hide();
-		}
+		start: function() { loadLeftImages(); }
 	});
+
+	function loadLeftImages() {
+		var srcNav = leftNav.shift();
+		var srcMain = leftMain.shift();
+
+		var sliderNav = jQuery('#$selector-carrousel').data('flexslider');
+		var sliderMain = jQuery('#$selector').data('flexslider');
+
+		if (srcMain != undefined) {
+			imgNav = jQuery('<img />');
+			imgMain = jQuery('<img />');
+
+			imgMain.on('load', function() {
+				var slideNav = jQuery('<li />');
+				slideNav.append(imgNav);
+
+				var slideMain = jQuery('<li />');
+				slideMain.append(imgMain);
+
+				sliderNav.addSlide(slideNav);
+				sliderMain.addSlide(slideMain);
+
+				loadLeftImages();
+			});
+
+			imgNav.attr('src', srcNav);
+			imgMain.attr('src', srcMain);
+		}
+	}
 });
 </script>
 ";
 
-	$output = $loader . $slider . $carrousel . $script;
+	$output = $slider . $carrousel . $script;
 
 	return $output;
 }
