@@ -41,7 +41,7 @@ function indymedia_gallery_output($output, $attr, $instance ) {
 	$attr = ( trim( $slide->post_excerpt ) ) ? array( 'aria-describedby' => "$selector-$slide->ID" ) : '';
 	$image_data = wp_get_attachment_image_src( $slide->ID, 'full', false );
 
-	$slider .= "<li><a href='" . $image_data[$att_id] . "'>" . wp_get_attachment_image( $slide->ID, 'full', false, $attr ) . "</a></li>";
+	$slider .= "<li><a href='" . $image_data[0] . "'>" . wp_get_attachment_image( $slide->ID, 'full', false, $attr ) . "</a></li>";
 	$carrousel .= "<li>" . wp_get_attachment_image($slide->ID, 'thumbnail', false, $attr ) . "</li>";
 
 	$slider .= "</ul></div>";
@@ -52,8 +52,10 @@ function indymedia_gallery_output($output, $attr, $instance ) {
 	$leftMain = array();
 	$leftNav = array();
 	while (list($key, $slide) = each($attachments)) {
-		array_push($leftMain, wp_get_attachment_image_src($slide->ID, 'full', false)[0]);
-		array_push($leftNav, wp_get_attachment_image_src($slide->ID, 'thumbnail', false)[0]);
+		$imageMain = wp_get_attachment_image_src($slide->ID, 'full', false);
+		array_push($leftMain, $imageMain[0]);
+		$imageNav = wp_get_attachment_image_src($slide->ID, 'thumbnail', false);
+		array_push($leftNav, $imageNav[0]);
 	}
 
 $script = "
@@ -100,6 +102,7 @@ jQuery(window).on('load',function() {
 				slideNav.append(imgNav);
 
 				var slideMain = jQuery('<li />');
+				var linkMain = 
 				slideMain.append(imgMain);
 
 				sliderNav.addSlide(slideNav);
