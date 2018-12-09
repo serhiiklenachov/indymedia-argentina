@@ -27,13 +27,14 @@
 				update: control.prepareData
 			});
 
-			_.bindAll( control, 'prepareCheckboxes', 'prepareImageOptions', 'addBlock', 'removeBlock', 'prepareData' );
+			_.bindAll( control, 'prepareCheckboxes', 'prepareImageOptions', 'prepareSwitcher', 'addBlock', 'removeBlock', 'prepareData' );
 
 			control.container.on( 'click keydown', '.top', control.toggleDetails );
 
 			control.container.on( 'keyup change', '[data-name]:not([type=hidden])', control.prepareData );
 			control.container.on( 'change', 'input[type="checkbox"][data-name]', control.prepareCheckboxes );
 			control.container.on( 'click', '.image-option label', control.prepareImageOptions );
+			control.container.on( 'click', '.switcher', control.prepareSwitcher );
 			control.container.on( 'click', '.indymedia-repeater-remove-button', control.removeBlock );
 			control.container.on( 'click', '.indymedia-repeater-add-button', control.addBlock );
 		},
@@ -68,6 +69,23 @@
 			$target.siblings().removeClass( 'selected' );
 
 			$target.siblings( '[type=hidden]' ).val( $target.attr( 'data-value' ) ).trigger( 'change' );
+
+			this.prepareData();
+		},
+
+		prepareSwitcher: function( e ) {
+			let $target = $( e.currentTarget );
+			let $storage = $target.siblings( '[type=hidden]' );
+
+			if ( $target.hasClass( 'switch-on' ) ) {
+				$target.removeClass( 'switch-on' );
+				$storage.val( 'off' );
+			} else {
+				$target.addClass( 'switch-on' );
+				$storage.val( 'on' )
+			}
+
+			$target.trigger( 'change' );
 
 			this.prepareData();
 		},

@@ -4,7 +4,6 @@ function control_indymedia_repeater_print_template() {
 ?>
 <script id="tmpl-customize-control-indymedia-repeater-content" type="text/html">
 	<# let prefix = _.uniqueId( 'indymedia-repeater-' ) #>
-	<# console.log(data) #>
 	<# if ( data.label != '') { #>
 	<h3 id="{{ prefix }}_label">{{ data.label }}</h3>
 	<# } #>
@@ -80,11 +79,22 @@ function control_indymedia_repeater_print_template() {
 							}
 							print('</select>');
 							break;
+						case 'switch':
+							let switcherClass = (storage[name] == 'on') ? 'switch-on' : '';
+							print('<div class="switcher ' + switcherClass +'">');
+								print('<div class="switcher-inner">');
+									print('<div class="switcher-active">');
+										print('<div class="switcher-switch">' + field.switch.on + '</div>');
+									print('</div>');
+									print('<div class="switcher-inactive">');
+										print('<div class="switcher-switch">' + field.switch.off + '</div>');
+									print('</div>');
+								print('</div>');
+							print('</div>');
+							print('<input type="hidden" data-default="' + field.default + '" data-name="' + name + '" value="' + storage[name] + '">');
+							break;
 						case 'text':
 							print('<input type="text" data-default="' + field.default + '" data-name="' + name + '" value="' + storage[name] + '">');
-							break;
-						case 'textarea':
-							
 							break;
 					} #>
 					</div>
