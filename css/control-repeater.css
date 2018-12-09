@@ -1,0 +1,81 @@
+.indymedia-repeater-control-container li .top {
+  background-color: #fafafa;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  cursor: move;
+}
+
+.indymedia-repeater-control-container li .top:hover {
+  border-color: #999;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.indymedia-repeater-control-container li .content {
+  display: none;
+  padding: 1px 15px 15px 15px;
+  line-height: 16px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.indymedia-repeater-control-container li .image-option {
+  margin: 0 -5px;
+}
+
+.indymedia-repeater-control-container li .image-option label {
+  display: inline-block;
+  padding: 2px;
+  position: relative;
+  max-width: 33.33%;
+  box-sizing: border-box;
+}
+
+.indymedia-repeater-control-container li .image-option label img {
+  vertical-align: middle;
+}
+
+.indymedia-repeater-control-container li .image-option label.selected {
+  background-color: #F58220;
+}
+
+.indymedia-repeater-control-container li .indymedia-repeater-field {
+  padding: 10px 0;
+}
+
+.indymedia-repeater-control-container li h3 {
+  margin: 0;
+  padding: 10px;
+}
+
+.indymedia-repeater-control-container li button {
+  border: 0;
+  margin: 0;
+  padding: 10px;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  float: right;
+}
+
+.indymedia-repeater-control-container li.block-placeholder {
+  border: 1px dashed #b4b9be;
+  margin: 0 auto 10px;
+  height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.indymedia-repeater-control-container .options {
+  overflow: auto;
+}
+
+.indymedia-repeater-control-container .indymedia-repeater-add-button {
+  margin-top: 10px;
+  float: right;
+}
+
+.indymedia-repeater-control-container li:nth-child(1) .indymedia-repeater-remove-button {
+  display: none;
+}
