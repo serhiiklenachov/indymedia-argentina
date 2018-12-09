@@ -3,7 +3,8 @@
 function control_indymedia_repeater_print_template() {
 ?>
 <script id="tmpl-customize-control-indymedia-repeater-content" type="text/html">
-	<# let prefix = _.uniqueId( 'repeater-' ) #>
+	<# let prefix = _.uniqueId( 'indymedia-repeater-' ) #>
+	<# console.log(data) #>
 	<# if ( data.label != '') { #>
 	<h3 id="{{ prefix }}_label">{{ data.label }}</h3>
 	<# } #>
@@ -24,6 +25,7 @@ function control_indymedia_repeater_print_template() {
 				<div class="content">
 				<# for ( name in data.fields ) { #>
 					<# let field = data.fields[name] #>
+					<# if ( storage[name] == undefined ) storage[name] = field.default #>
 					<div class="indymedia-repeater-field indymedia-repeater-control-{{ field.type }}">
 					<# if ( field.type != 'checkbox' ) { #>
 						<span class="customize-control-title">{{ field.label }}</span>
@@ -31,9 +33,6 @@ function control_indymedia_repeater_print_template() {
 						<span class="description customize-control-description">{{ field.description }}</span>
 					<# switch( field.type ) {
 						case 'checkbox':
-							if ( storage[name] == undefined ) {
-								storage[name] = field.default;
-							}
 							let checked = storage[name] == 'on' ? ' checked' : '';
 							print('<label>');
 							print('<input type="checkbox" data-default="' + field.default + '" data-name="' + name + '" value="' + storage[name] + '" ' + checked + '>');
@@ -49,9 +48,9 @@ function control_indymedia_repeater_print_template() {
 								print('</select>');
 							} else {
 								print('<select data-name="' + name + '" data-default="0">');
-								print('<option value="0">' + data.localization.select_category + '</option>');
+								print('<option value="0">' + data.strings.select_category + '</option>');
 								let selected = storage[name] == -1 ? ' selected' : '';
-								print('<option value="-1"' + selected + '>' + data.localization.latest_news + '</option>');
+								print('<option value="-1"' + selected + '>' + data.strings.latest_news + '</option>');
 								for ( id in wp.customize.data.categories ) {
 									let selected = id == storage[name] ? ' selected' : '';
 									print('<option value="' + id + '"' + selected + '>' + wp.customize.data.categories[id] + '</option>');
@@ -60,9 +59,6 @@ function control_indymedia_repeater_print_template() {
 							}
 							break;
 						case 'image-option':
-							if ( storage[name] == undefined ) {
-								storage[name] = field.default;
-							}
 							print('<div class="image-option">');
 							for ( id in field.options ) {
 								let selected = id == storage[name] ? ' class="selected"' : '';
@@ -74,11 +70,21 @@ function control_indymedia_repeater_print_template() {
 							print('<input type="hidden" data-name="' + name + '" data-default="' + field.default + '" value="' + storage[name] + '">');
 							print('</div>');
 							break;
-						case 'text':
-							if ( storage[name] == undefined ) {
-								storage[name] = field.default;
+						case 'select':
+							print('<select data-default="' + field.default + '" data-name="' + name + '" value="' + storage[name] + '">');
+							for ( id in field.options ) {
+								let selected = id == storage[name] ? ' class="selected"' : '';
+								print('<option data-value="' + id + '"' + selected + '>');
+								print(field.options[id]);
+								print('</option>');
 							}
+							print('</select>');
+							break;
+						case 'text':
 							print('<input type="text" data-default="' + field.default + '" data-name="' + name + '" value="' + storage[name] + '">');
+							break;
+						case 'textarea':
+							
 							break;
 					} #>
 					</div>
@@ -91,7 +97,7 @@ function control_indymedia_repeater_print_template() {
 		<# } #>
 	</ul>
 	<input type="hidden" class="indymedia-repeater-storage" value="{{ data.value }}" data-customize-setting-key-link="default" />
-	<button type="button" class="button indymedia-repeater-add-button">{{ data.localization.add_button }}</button>
+	<button type="button" class="button indymedia-repeater-add-button">{{ data.strings.add_button }}</button>
 </script>
 <?php
 }

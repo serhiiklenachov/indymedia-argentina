@@ -1,6 +1,5 @@
 ( function( exports, $ ) {
 	var api = wp.customize;
-
 	api.IndymediaRepeaterControl = api.Control.extend({
 		defaults: _.extend(
 			{},
@@ -9,7 +8,12 @@
 				templateId: 'customize-control-indymedia-repeater-content',
 				type: 'indymedia-repeater',
 				default: '[{}]',
-				blockLabel: 'Bloque'
+				blockLabel: 'Bloque',
+				strings: {
+					'select_category': 'Seleccionar Categoría',
+					'latest_news': 'Últimas Noticias',
+					'add_button': 'Agregar Bloque'
+				}
 			}
 		),
 
