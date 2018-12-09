@@ -1,35 +1,23 @@
 <?php
 
-class WP_Customize_Editor extends WP_Customize_Control {
-	public $type = 'editor';
-
-	public function render_content() { ?>
-		<label>
-			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-			<input id="<?php echo $this->id; ?>-link" type="hidden" class="wp-editor-area" <?php $this->link(); ?> value="<?php echo esc_textarea( $this->value() ); ?>">
-			<?php
-			$settings = array(
-				'textarea_name' => $this->id,
-				'media_buttons' => true,
-				'tinymce' => array(
-					'setup' => "function (editor) {
-						var cb = function () {
-							var linkInput = document.getElementById('$this->id-link')
-							linkInput.value = editor.getContent()
-							linkInput.dispatchEvent(new Event('change'))
-						}
-						editor.on('Change', cb)
-						editor.on('Undo', cb)
-						editor.on('Redo', cb)
-					}"
-				)
-			);
-			wp_editor($this->value(), $this->id, $settings );
-
-			do_action('admin_footer');
-			do_action('admin_print_footer_scripts');
-		?>
-		</label>
+function control_indymedia_editor_print_template() {
+?>
+<script id="tmpl-customize-control-indymedia-editor-content" type="text/html">
+	<# let prefix = _.uniqueId( 'indymedia-editor-' ) #>
+	<# if ( data.label != '') { #>
+	<h3 id="{{ prefix }}_label">{{ data.label }}</h3>
+	<# } #>
+	<# if ( data.description != '') { #>
+	<span id="{{ prefix }}_description" class="description customize-control-description">{{ data.label }}</span>
+	<# } #>
+	<textarea id="{{ prefix }}" value="{{ data.value }}" data-customize-setting-key-link="default"></textarea>
+</script>
 	<?php
-	}
 }
+
+add_action( 'customize_controls_print_footer_scripts', 'control_indymedia_editor_print_template');
+
+function control_indymedia_editor_load_scripts() {
+	wp_enqueue_script( 'control-indymedia-editor', get_stylesheet_directory_uri() . '/js/control-editor.js', array(), null, true );
+}
+add_action( 'customize_controls_enqueue_scripts', 'control_indymedia_editor_load_scripts' );
