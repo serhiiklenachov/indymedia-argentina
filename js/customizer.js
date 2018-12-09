@@ -130,10 +130,187 @@
 			})
 		);
 
+		api.panel.add(
+			new api.Panel( 'indymedia_categories_panel', {
+				title: api.data.l10n.categoriesPanelTitle,
+				priority: 21
+			})
+		);
+
+		for ( id in api.data.categories ) {
+			api.section.add(
+				new api.Section( 'indymedia_category_' + id, {
+					title: api.data.categories[id].title,
+					panel: 'indymedia_categories_panel'
+				})
+			);
+
+			if ( api.data.categories[id].subcategories ) {
+				for ( sid in api.data.categories[id].subcategories ) {
+					api.section.add(
+						new api.Section( 'indymedia_category_' + sid, {
+							title: api.data.categories[id].title + ' / ' + api.data.categories[id].subcategories[sid],
+							panel: 'indymedia_categories_panel'
+						})
+					);
+
+					customizerCategoriesAddControls( sid );
+				}
+			} else {
+				customizerCategoriesAddControls( id );
+			}
+		}
+
 		api.control( 'indymedia_refresh' , function( control ) {
 			control.container.find( '.button' ).on( 'click', function() {
 				wp.customize.previewer.refresh();
 			});
 		});
+
+		function customizerCategoriesAddControls( category ) {
+			var image_path = api.data.theme.parent.url + '/images/';
+
+			api.control.add(
+				new api.MediaControl( 'indymedia_category_' + category + '_image_control', {
+					label: api.data.l10n.categoriesImageControlLabel,
+					section: 'indymedia_category_' + category,
+					description: api.data.l10n.categoriesImageControlDescription,
+					setting: api('indymedia_category_' + category + '_image'),
+					mime_type: 'image',
+					button_labels: {
+						change: api.data.l10n.changeLogo,
+						default: api.data.l10n.default,
+						frame_button: api.data.l10n.chooseLogo,
+						frame_title: api.data.l10n.chooseLogo,
+						placeholder: api.data.l10n.logoNotSelected,
+						remove: api.data.l10n.remove,
+						select: api.data.l10n.chooseLogo
+					}
+				})
+			);
+
+			api.control.add(
+				new api.IndymediaRepeaterControl( 'indymedia_category_' + category + '_social_control', {
+					label: api.data.l10n.categoriesSocialControlLabel,
+					blockLabel: api.data.l10n.categoriesSocialControlLabel,
+					section: 'indymedia_category_' + category,
+					setting: api('indymedia_category_' + category + '_social'),
+					strings: {
+						'add_button': api.data.l10n.categoriesSocialControlAddButton
+					},
+					fields: {
+						type: {
+							type: 'select',
+							label: api.data.l10n.socialNetwork,
+							options: {
+								facebook: 'Facebook',
+								google: 'Google+',
+								twitter: 'Twitter',
+								instagram: 'Instagram',
+								pinterest: 'Pinterest',
+								telegram: 'Telegram',
+								vimeo: 'Vimeo',
+								youtube: 'YouTube'
+							}
+						},
+						name: {
+							type: 'text',
+							label: 'Nombre'
+						},
+						url: {
+							type: 'text',
+							label: 'URL'
+						}
+					}
+				})
+			);
+
+			api.control.add(
+				new api.IndymediaEditorControl( 'indymedia_category_' + category + '_editor_control', {
+					label: api.data.l10n.categoriesEditorControlLabel,
+					section: 'indymedia_category_' + category,
+					setting: api('indymedia_category_' + category + '_editor')
+				})
+			);
+
+			api.control.add(
+				new api.IndymediaRepeaterControl( 'indymedia_category_' + category + '_top_blocks_control', {
+					label: 'Bloques de cabecera',
+					blockLabel: 'News Section',
+					section: 'indymedia_category_' + category,
+					setting: api('indymedia_category_' + category + '_top_blocks'),
+					strings: {
+						'add_button': 'Add Section'
+					},
+					fields: {
+						layout: {
+							type: 'image-option',
+							label: 'Layouts',
+							description: 'Select the Block Layout',
+							options: {
+								style1: image_path + 'top-layout1.png',
+								style2: image_path + 'top-layout2.png',
+								style3: image_path + 'top-layout3.png',
+								style4: image_path + 'top-layout4.png'
+							},
+							default: 'style1'
+						},
+						highlight: {
+							type: 'switch',
+							label: 'Destacados',
+							switch: {
+								on: 'Si',
+								off: 'No'
+							},
+							default: 'off'
+						},
+						enable: {
+							type: 'switch',
+							label: 'Enable Section',
+							switch: {
+								on: 'Si',
+								off: 'No'
+							},
+							default: 'off'
+						},
+					}
+				})
+			);
+
+			api.control.add(
+				new api.IndymediaRepeaterControl( 'indymedia_category_' + category + '_middle_blocks_control', {
+					label: 'Bloques de contenido',
+					blockLabel: 'News Section',
+					section: 'indymedia_category_' + category,
+					setting: api('indymedia_category_' + category + '_middle_blocks'),
+					strings: {
+						'add_button': 'Add Section'
+					},
+					fields: {
+						layout: {
+							type: 'image-option',
+							label: 'Layouts',
+							description: 'Select the Block Layout',
+							options: {
+								style1: image_path + 'middle-layout1.png',
+								style2: image_path + 'middle-layout2.png',
+								style3: image_path + 'middle-layout3.png',
+								style4: image_path + 'middle-layout4.png'
+							},
+							default: 'style1'
+						},
+						enable: {
+							type: 'switch',
+							label: 'Enable Section',
+							switch: {
+								on: 'Si',
+								off: 'No'
+							},
+							default: 'off'
+						},
+					}
+				})
+			);
+		}
 	});
 }( wp.customize ) );

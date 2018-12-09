@@ -143,6 +143,28 @@ function indymedia_customize_register( $wp_customize ) {
 		)
 	);
 
+	$categories = get_categories(array(
+		'parent'  => 0,
+		'orderby' => 'name',
+		'order'   => 'ASC',
+		'hide_empty' => false,
+	));
+
+	foreach( $categories as $category ) {
+		indymedia_category_register_settings( $wp_customize, $category->term_id );
+
+		$subcategories = get_categories(array(
+			'parent' => $category->term_id,
+			'orderby' => 'name',
+			'order'   => 'ASC',
+			'hide_empty' => false,
+		));
+
+		foreach( $subcategories as $subcategory ) {
+			indymedia_category_register_settings( $wp_customize, $subcategory->term_id );
+		}
+	}
+
 	/**
 	 * Controls
 	 */
@@ -214,6 +236,60 @@ function indymedia_customize_register( $wp_customize ) {
 
 add_action( 'customize_register', 'indymedia_customize_register' );
 
+function indymedia_category_register_settings( $wp_customize, $category ) {
+	$wp_customize->add_setting(
+		"indymedia_category_{$category}_image",
+		array(
+			'default'			=> '',
+			'capability'		=> 'edit_theme_options'
+		)
+	);
+
+	$wp_customize->add_setting(
+		"indymedia_category_{$category}_social",
+		array(
+			'capability' => 'edit_theme_options',
+			'default'    => json_encode(array(array(
+				'name' => '',
+				'url'  => ''
+			)))
+		)
+	);
+
+	$wp_customize->add_setting(
+		"indymedia_category_{$category}_editor",
+		array(
+			'default' => '',
+			'transport' => 'refresh',
+			'sanitize_callback' => 'wp_kses_post'
+		)
+	);
+
+	$wp_customize->add_setting( 
+		"indymedia_category_{$category}_top_blocks",
+		array(
+			'capability' => 'edit_theme_options',
+			'default' => json_encode(array(array(
+				'category' => '0',
+				'layout' => 'style1',
+				'highlight' => 'off',
+				'enable' => 'on'
+			)))
+		)
+	);
+
+	$wp_customize->add_setting( 
+		"indymedia_category_{$category}_middle_blocks",
+		array(
+		'sanitize_callback' => 'viral_sanitize_repeater',
+		'default' => json_encode(array(array(
+			'category' => '0',
+			'layout' => 'style1',
+			'enable' => 'on'
+		)))
+	));
+}
+
 function indymedia_customize_preview() {
 	wp_enqueue_script( 'indymedia_customizer_preview', get_stylesheet_directory_uri() . '/js/preview.js', array( 'customize-preview' ), '20180224', true );
 }
@@ -257,7 +333,43 @@ function indymedia_customizer_controls() {
 		'Yanone Kaffeesatz:400,700' => 'Yanone Kaffeesatz'
 	);
 
+	$data[ 'theme' ][ 'url' ] = get_stylesheet_directory_uri();
+	$data[ 'theme' ][ 'parent' ][ 'url' ] = get_template_directory_uri();
+
+	$categories = get_categories(array(
+		'parent'  => 0,
+		'orderby' => 'name',
+		'order'   => 'ASC',
+		'hide_empty' => false,
+	));
+
+	foreach( $categories as $category ) {
+		$data[ 'categories' ][ $category->term_id ]['title'] = $category->name;
+
+		$subcategories = get_categories(array(
+			'parent' => $category->term_id,
+			'orderby' => 'name',
+			'order'   => 'ASC',
+			'hide_empty' => false,
+		));
+
+		foreach( $subcategories as $subcategory ) {
+			$data[ 'categories' ][ $category->term_id ]['subcategories'][ $subcategory->term_id ] = $subcategory->name;
+		}
+	}
+
 	$data[ 'l10n' ] = array(
+		'categoriesPanelTitle' => __( 'Categorias', 'indymedia' ),
+		'categoriesImageControlLabel' => __( 'Imagen', 'indymedia' ),
+		'categoriesImageControlDescription' => __( 'Imagen a mostrar en la cabecera de la sección', 'indymedia' ),
+		'categoriesSocialControlLabel' => __('Redes sociales', 'indymedia'),
+		'categoriesSocialControlAddButton' => __('Agregar Red Social','indymedia'),
+		'categoriesEditorControlLabel' => __( 'Texto en cabecera', 'indymedia' ),
+		'changeLogo' => __( 'Cambiar Logo', 'indymedia' ),
+		'chooseLogo' => __( 'Seleccionar logo', 'indymedia' ),
+		'default' => __( 'Predeterminado', 'indymedia' ),
+		'logoNotSelected' => __( 'Logo no seleccionado', 'indymedia' ),
+		'remove' => __( 'Eliminar', 'indymedia' ),
 		'fontsSectionTitle' => __( 'Fuentes', 'indymedia' ),
 		'sectionTagsFont' => __( 'Etiquetas de Sección', 'indymedia' ),
 		'heroTitleFont' => __( 'Títulos Destacados', 'indymedia' ),
@@ -279,7 +391,8 @@ function indymedia_customizer_controls() {
 		'mainNavigationFont' => __( 'Menú Principal', 'indymedia' ),
 		'mainNavigationFontDescription' => __( 'Fuente del menú principal del sitio', 'indymedia' ),
 		'tickerFont' => __( 'Teletipo', 'indymedia' ),
-		'tickerFontDescription' => __( 'Fuente del teletipo, tanto título como contenido.', 'indymedia' )
+		'tickerFontDescription' => __( 'Fuente del teletipo, tanto título como contenido.', 'indymedia' ),
+		'socialNetwork' => __( 'Red Social', 'indymedia' ),
 	);
 
 	wp_localize_script( 'indymedia_customizer', '_wpIndymediaData', $data );

@@ -10,7 +10,6 @@
 				default: '[{}]',
 				blockLabel: 'Bloque',
 				strings: {
-					'select_category': 'Seleccionar Categoría',
 					'latest_news': 'Últimas Noticias',
 					'add_button': 'Agregar Bloque'
 				}

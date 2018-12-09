@@ -9,7 +9,6 @@ include get_stylesheet_directory() . '/inc/template-tags.php';
 include get_stylesheet_directory() . '/inc/gallery.php';
 
 include get_stylesheet_directory() . '/customizer/customizer.php';
-include get_stylesheet_directory() . '/customizer/categories.php';
 
 if ( !function_exists( 'indymedia_theme_setup' ) ) {
 	function indymedia_theme_setup() {

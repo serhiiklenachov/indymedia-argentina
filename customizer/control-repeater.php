@@ -37,33 +37,13 @@ function control_indymedia_repeater_print_template() {
 							print('<input type="checkbox" data-default="' + field.default + '" data-name="' + name + '" value="' + storage[name] + '" ' + checked + '>');
 							print(field.label + '</label>');
 							break;
-						case 'category':
-							if ( field.multiple ) {
-								print('<select multiple data-name="' + name + '" data-default="0">');
-								for ( id in wp.customize.data.categories ) {
-									let selected = id == storage[name] ? ' selected' : '';
-									print('<option value="' + id + '"' + selected + '>' + wp.customize.data.categories[id] + '</option>');
-								}
-								print('</select>');
-							} else {
-								print('<select data-name="' + name + '" data-default="0">');
-								print('<option value="0">' + data.strings.select_category + '</option>');
-								let selected = storage[name] == -1 ? ' selected' : '';
-								print('<option value="-1"' + selected + '>' + data.strings.latest_news + '</option>');
-								for ( id in wp.customize.data.categories ) {
-									let selected = id == storage[name] ? ' selected' : '';
-									print('<option value="' + id + '"' + selected + '>' + wp.customize.data.categories[id] + '</option>');
-								}
-								print('</select>');
-							}
-							break;
 						case 'image-option':
 							print('<div class="image-option">');
-							for ( id in field.options ) {
-								let selected = id == storage[name] ? ' class="selected"' : '';
+							for ( option in field.options ) {
+								let selected = option == storage[name] ? ' class="selected"' : '';
 
-								print('<label data-value="' + id + '"' + selected + '>');
-								print('<img src="' + field.options[id] + '"/>')
+								print('<label data-value="' + option + '"' + selected + '>');
+								print('<img src="' + field.options[option] + '"/>')
 								print('</label>');
 							}
 							print('<input type="hidden" data-name="' + name + '" data-default="' + field.default + '" value="' + storage[name] + '">');
@@ -71,9 +51,9 @@ function control_indymedia_repeater_print_template() {
 							break;
 						case 'select':
 							print('<select data-default="' + field.default + '" data-name="' + name + '" value="' + storage[name] + '">');
-							for ( id in field.options ) {
-								let selected = id == storage[name] ? ' class="selected"' : '';
-								print('<option data-value="' + id + '"' + selected + '>');
+							for ( option in field.options ) {
+								let selected = option == storage[name] ? ' class="selected"' : '';
+								print('<option data-value="' + option + '"' + selected + '>');
 								print(field.options[id]);
 								print('</option>');
 							}
