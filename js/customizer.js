@@ -6,7 +6,8 @@
 			new api.Section( 'indymedia_fonts', {
 				title: api.data.l10n.fontsSectionTitle,
 				panel: 'viral_general_settings_panel',
-				priority: 50
+				priority: 50,
+				customizeAction: 'Estás personalizando'
 			})
 		);
 
@@ -141,7 +142,8 @@
 			api.section.add(
 				new api.Section( 'indymedia_category_' + id, {
 					title: api.data.categories[id].title,
-					panel: 'indymedia_categories_panel'
+					panel: 'indymedia_categories_panel',
+					customizeAction: 'Estás personalizando'
 				})
 			);
 
@@ -150,7 +152,8 @@
 					api.section.add(
 						new api.Section( 'indymedia_category_' + sid, {
 							title: api.data.categories[id].title + ' / ' + api.data.categories[id].subcategories[sid],
-							panel: 'indymedia_categories_panel'
+							panel: 'indymedia_categories_panel',
+							customizeAction: 'Estás personalizando'
 						})
 					);
 
