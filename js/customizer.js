@@ -7,7 +7,7 @@
 				title: api.data.l10n.fontsSectionTitle,
 				panel: 'viral_general_settings_panel',
 				priority: 50,
-				customizeAction: 'Estás personalizando'
+				customizeAction: api.data.l10n.customSectionAction
 			})
 		);
 
@@ -143,7 +143,7 @@
 				new api.Section( 'indymedia_category_' + id, {
 					title: api.data.categories[id].title,
 					panel: 'indymedia_categories_panel',
-					customizeAction: 'Estás personalizando'
+					customizeAction: api.data.l10n.customSectionAction
 				})
 			);
 
@@ -153,7 +153,7 @@
 						new api.Section( 'indymedia_category_' + sid, {
 							title: api.data.categories[id].title + ' / ' + api.data.categories[id].subcategories[sid],
 							panel: 'indymedia_categories_panel',
-							customizeAction: 'Estás personalizando'
+							customizeAction: api.data.l10n.customSectionAction
 						})
 					);
 
@@ -238,18 +238,18 @@
 
 			api.control.add(
 				new api.IndymediaRepeaterControl( 'indymedia_category_' + category + '_top_blocks_control', {
-					label: 'Bloques de cabecera',
-					blockLabel: 'News Section',
+					label: api.data.l10n.topBlocksLabel,
+					blockLabel: api.data.l10n.newsSection,
 					section: 'indymedia_category_' + category,
 					setting: api('indymedia_category_' + category + '_top_blocks'),
 					strings: {
-						'add_button': 'Add Section'
+						'add_button': api.data.l10n.addSection
 					},
 					fields: {
 						layout: {
 							type: 'image-option',
 							label: 'Layouts',
-							description: 'Select the Block Layout',
+							description: api.data.l10n.layoutsDescription,
 							options: {
 								style1: image_path + 'top-layout1.png',
 								style2: image_path + 'top-layout2.png',
@@ -260,19 +260,19 @@
 						},
 						highlight: {
 							type: 'switch',
-							label: 'Destacados',
+							label: api.data.l10n.highlighted,
 							switch: {
-								on: 'Si',
-								off: 'No'
+								on: api.data.l10n.optionYes,
+								off: api.data.l10n.optionNo
 							},
 							default: 'off'
 						},
 						enable: {
 							type: 'switch',
-							label: 'Enable Section',
+							label: api.data.l10n.enableSection,
 							switch: {
-								on: 'Si',
-								off: 'No'
+								on: api.data.l10n.optionYes,
+								off: api.data.l10n.optionNo
 							},
 							default: 'off'
 						},
@@ -282,18 +282,18 @@
 
 			api.control.add(
 				new api.IndymediaRepeaterControl( 'indymedia_category_' + category + '_middle_blocks_control', {
-					label: 'Bloques de contenido',
-					blockLabel: 'News Section',
+					label: api.data.l10n.contentBlocksLabel,
+					blockLabel: api.data.l10n.newsSection,
 					section: 'indymedia_category_' + category,
 					setting: api('indymedia_category_' + category + '_middle_blocks'),
 					strings: {
-						'add_button': 'Add Section'
+						'add_button': api.data.l10n.addSection
 					},
 					fields: {
 						layout: {
 							type: 'image-option',
 							label: 'Layouts',
-							description: 'Select the Block Layout',
+							description: api.data.l10n.layoutsDescription,
 							options: {
 								style1: image_path + 'middle-layout1.png',
 								style2: image_path + 'middle-layout2.png',
@@ -304,10 +304,10 @@
 						},
 						enable: {
 							type: 'switch',
-							label: 'Enable Section',
+							label: api.data.l10n.enableSection,
 							switch: {
-								on: 'Si',
-								off: 'No'
+								on: api.data.l10n.optionYes,
+								off: api.data.l10n.optionNo
 							},
 							default: 'off'
 						},
