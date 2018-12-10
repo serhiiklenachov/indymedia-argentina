@@ -168,34 +168,6 @@ function indymedia_customize_register( $wp_customize ) {
 	/**
 	 * Controls
 	 */
-	$wp_customize->add_control( 
-		new WP_Customize_Color_Control( 
-			$wp_customize, 
-			'main_color', 
-			array(
-				'label'       => __( 'Color principal', 'indymedia' ),
-				'section'     => 'colors',
-				'description' => 'Los colores que se muestran al pasar el mouse por encima de un objeto requieren recargar la página para actualizarlos',
-				'settings'    => 'indymedia_main_color',
-			)
-		)
-	);
-
-	$wp_customize->add_control( 
-		new \WP_Customize_Control(
-			$wp_customize,
-			'indymedia_refresh',
-			array(
-				'type'        => 'button',
-				'section'     => 'colors',
-				'settings'    => array(),
-				'input_attrs' => array(
-					'value'   => __( 'Actualizar', 'indymedia' ),
-					'class'   => 'button button-primary',
-				)
-			)
-		)
-	);
 
 	$wp_customize->add_control(
 		new \CustomizeImageGalleryControl\Control(
@@ -205,31 +177,8 @@ function indymedia_customize_register( $wp_customize ) {
 				'label'				=> __( 'Imágenes', 'indymedia' ),
 				'section'			=> 'viral_header_settings_sec',
 				'settings'			=> 'indymedia_background_header_images',
+				'priority'			=> 5
 			)
-		)
-	);
-
-	$wp_customize->add_control(
-		new WP_Customize_Control(
-			$wp_customize,
-			'background_header_counter',
-			array(
-				'label'				=> __( 'Retardo', 'indymedia' ),
-				'description'		=> __( 'Tiempo en milisegundos que se verá cada imagen en la cabecera', 'indymedia' ),
-				'section'			=> 'viral_header_settings_sec',
-				'settings'			=> 'indymedia_background_header_counter',
-				'type'				=> 'number',
-			)
-		)
-	);
-
-	$wp_customize->add_control(
-		'viral_social_telegram',
-		array(
-			'settings'		=> 'viral_social_telegram',
-			'section'		=> 'viral_social_icons_sec',
-			'type'			=> 'url',
-			'label'			=> __( 'Telegram', 'indymedia' )
 		)
 	);
 }
@@ -360,6 +309,7 @@ function indymedia_customizer_controls() {
 
 	$data[ 'l10n' ] = array(
 		'addSection' => __('Add Section','viral'),
+		'backgroundImages' => __( 'Imágenes', 'indymedia' ),
 		'blockTitleFont' => __( 'Títulos de Bloque', 'indymedia' ),
 		'blockTitleFontDescription' => __( 'Fuente de los títulos de los bloques mostrados en primera plana', 'indymedia' ),
 		'categoriesEditorControlLabel' => __( 'Texto en cabecera', 'indymedia' ),
@@ -379,12 +329,16 @@ function indymedia_customizer_controls() {
 		'entryTitleFont' => __( 'Títulos de las Entradas', 'indymedia' ),
 		'entryTitleFontDescription' => __( 'Fuente de los títulos de las entradas individuales', 'indymedia' ),
 		'fontsSectionTitle' => __( 'Fuentes', 'indymedia' ),
+		'headerCounterLabel' => __( 'Retardo', 'indymedia' ),
+		'headerCounterDescription' => __( 'Tiempo en milisegundos que se verá cada imagen en la cabecera', 'indymedia' ),
 		'heroTitleFont' => __( 'Títulos Destacados', 'indymedia' ),
 		'heroTitleFontDescription' => __( 'Fuente de los títulos de las noticias destacadas mostradas en la parte superior de la primera plana', 'indymedia' ),
 		'highlighted' => __( 'Destacados', 'indymedia' ),
 		'layoutsLabel' => __( 'Layouts', 'viral' ),
 		'layoutsDescription' => __( 'Select the Block Layout', 'viral' ),
 		'logoNotSelected' => __( 'Logo no seleccionado', 'indymedia' ),
+		'mainColorLabel' => __( 'Color principal', 'indymedia' ),
+		'mainColorDescription' => __( 'Los colores que se muestran al pasar el mouse por encima de un objeto requieren recargar la página para actualizarlos', 'indymedia' ),
 		'mainNavigationFont' => __( 'Menú Principal', 'indymedia' ),
 		'mainNavigationFontDescription' => __( 'Fuente del menú principal del sitio', 'indymedia' ),
 		'newsSection' => __('News Section','viral'),
@@ -394,6 +348,7 @@ function indymedia_customizer_controls() {
 		'postTitleFontDescription' => __( 'Fuente de los títulos de artículos mostrados en primera plana', 'indymedia' ),
 		'postExcerptFont' => __( 'Extractos de Artículos', 'indymedia' ),
 		'postExcerptFontDescription' => __( 'Fuente de los resumenes de artículos mostrados en primera plana', 'indymedia' ),
+		'refresh' => __( 'Recargar', 'indymedia' ),
 		'remove' => __( 'Eliminar', 'indymedia' ),
 		'sectionTagsFont' => __( 'Etiquetas de Sección', 'indymedia' ),
 		'socialNetwork' => __( 'Red Social', 'indymedia' ),

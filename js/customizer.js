@@ -2,6 +2,48 @@
 	api.data = window._wpIndymediaData;
 
 	api.bind( 'ready', function() {
+
+		api.control.add(
+			new api.ColorControl( 'main_color', {
+				label: api.data.l10n.mainColorLabel,
+				section: 'colors',
+				description: api.data.l10n.mainColorDescription,
+				setting: api( 'indymedia_main_color' )
+			})
+		);
+
+		api.control.add(
+			new api.Control( 'indymedia_refresh', {
+				type: 'button',
+				section: 'colors',
+				input_attrs: {
+					value: api.data.l10n.refresh,
+					class: 'button button-primary'
+				}
+			})
+		);
+
+		api.control.add(
+			new api.Control( 'background_header_counter', {
+				type: 'number',
+				label: api.data.l10n.headerCounterLabel,
+				description: api.data.l10n.headerCounterDescription,
+				section: 'viral_header_settings_sec',
+				setting: api( 'indymedia_background_header_counter' ),
+				priority: 6
+			})
+		);
+
+		api.control.add(
+			new api.Control( 'viral_social_telegram', {
+				type: 'url',
+				label: 'Telegram',
+				section: 'viral_social_icons_sec',
+				setting: api( 'viral_social_telegram' ),
+				priority: 9
+			})
+		)
+
 		api.section.add(
 			new api.Section( 'indymedia_fonts', {
 				title: api.data.l10n.fontsSectionTitle,
