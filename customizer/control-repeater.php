@@ -54,7 +54,7 @@ function control_indymedia_repeater_print_template() {
 							for ( option in field.options ) {
 								let selected = option == storage[name] ? ' class="selected"' : '';
 								print('<option data-value="' + option + '"' + selected + '>');
-								print(field.options[id]);
+								print(field.options[option]);
 								print('</option>');
 							}
 							print('</select>');
