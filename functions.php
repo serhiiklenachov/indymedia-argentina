@@ -244,3 +244,12 @@ function viral_social_links(){
 	if($instagram)
 		echo '<a class="vl-instagram" href="'.esc_url( $instagram ).'" target="_blank"><i class="fa fa-instagram"></i></a>';
 }
+
+function indymedia_fix_ogg_mimetype( $existing_types ) {
+	$existing_types['ogg'] = 'application/ogg';
+	$existing_types['ogv'] = 'application/ogg';
+
+	return $existing_types;
+}
+
+add_filter( 'upload_mimes', 'indymedia_fix_ogg_mimetype' );
