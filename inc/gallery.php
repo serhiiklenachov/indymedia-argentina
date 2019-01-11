@@ -31,7 +31,7 @@ function indymedia_gallery_output($output, $attr, $instance ) {
 		return $output;
 	}
 
-	$selector = "gallery-{$instance}";
+	$selector = uniqid('gallery_');
 
 	$slider = "<div id='$selector' class='gallery flexslider'><ul class='slides'>";
 	$carrousel = "<div id='$selector-carrousel' class='gallery-carrousel flexslider'><ul class='slides'>";
@@ -61,8 +61,8 @@ function indymedia_gallery_output($output, $attr, $instance ) {
 $script = "
 <script type='text/javascript'>
 jQuery(window).on('load',function() {
-	var leftMain = " . json_encode($leftMain) . ";
-	var leftNav = " . json_encode($leftNav) . ";
+	var {$selector}_leftMain = " . json_encode($leftMain) . ";
+	var {$selector}_leftNav = " . json_encode($leftNav) . ";
 
 	jQuery('#$selector-carrousel').flexslider({
 		animation: 'slide',
@@ -73,7 +73,8 @@ jQuery(window).on('load',function() {
 		minItems: 4,
 		maxItems: 8,
 		itemMargin: 5,
-		asNavFor: '#$selector'
+		asNavFor: '#$selector',
+		controlsContainer: '.flex-container'
 	});
 
 	jQuery('#$selector').flexslider({
@@ -83,37 +84,38 @@ jQuery(window).on('load',function() {
 		controlNav: false,
 		smoothHeight: true,
 		sync: '#$selector-carrousel',
-		start: function() { loadLeftImages(); }
+		start: function() { {$selector}_loadLeftImages(); },
+		controlsContainer: '.flex-container'
 	});
 
-	function loadLeftImages() {
-		var srcNav = leftNav.shift();
-		var srcMain = leftMain.shift();
+	function {$selector}_loadLeftImages() {
+		var {$selector}_srcNav = {$selector}_leftNav.shift();
+		var {$selector}_srcMain = {$selector}_leftMain.shift();
 
-		var sliderNav = jQuery('#$selector-carrousel').data('flexslider');
-		var sliderMain = jQuery('#$selector').data('flexslider');
+		var {$selector}_sliderNav = jQuery('#$selector-carrousel').data('flexslider');
+		var {$selector}_sliderMain = jQuery('#$selector').data('flexslider');
 
-		if (srcMain != undefined) {
-			imgNav = jQuery('<img />');
-			imgMain = jQuery('<img />');
+		if ({$selector}_srcMain != undefined) {
+			{$selector}_imgNav = jQuery('<img />');
+			{$selector}_imgMain = jQuery('<img />');
 
-			imgMain.on('load', function() {
-				var slideNav = jQuery('<li />');
-				slideNav.append(imgNav);
+			{$selector}_imgMain.on('load', function() {
+				var {$selector}_slideNav = jQuery('<li />');
+				{$selector}_slideNav.append({$selector}_imgNav);
 
-				var slideMain = jQuery('<li />');
-				var linkMain = jQuery('<a href=' + srcMain + ' />');
-				linkMain.append(imgMain);
-				slideMain.append(linkMain);
+				var {$selector}_slideMain = jQuery('<li />');
+				var {$selector}_linkMain = jQuery('<a href=' + {$selector}_srcMain + ' />');
+				{$selector}_linkMain.append({$selector}_imgMain);
+				{$selector}_slideMain.append({$selector}_linkMain);
 
-				sliderNav.addSlide(slideNav);
-				sliderMain.addSlide(slideMain);
+				{$selector}_sliderNav.addSlide({$selector}_slideNav);
+				{$selector}_sliderMain.addSlide({$selector}_slideMain);
 
-				loadLeftImages();
+				{$selector}_loadLeftImages();
 			});
 
-			imgNav.attr('src', srcNav);
-			imgMain.attr('src', srcMain);
+			{$selector}_imgNav.attr('src', {$selector}_srcNav);
+			{$selector}_imgMain.attr('src', {$selector}_srcMain);
 		}
 	}
 });
