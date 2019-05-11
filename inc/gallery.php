@@ -2,9 +2,15 @@
 add_filter( 'post_gallery', 'indymedia_gallery_output', 10, 3);
 
 function indymedia_gallery_output($output, $attr, $instance ) {
-	global $post, $wp_locale;
+  global $post, $wp_locale;
 
-	$id = intval( $attr['id'] );
+  $attr = array_merge(
+    array(
+      'id'    => $post->ID,
+      'order' => 'date'
+    ),
+    $attr
+  );
 
 	if ( ! empty( $attr['include'] ) ) {
 		$_attachments = get_posts( array( 'include' => $attr['include'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $attr['order'], 'orderby' => $attr['orderby'] ) );
@@ -14,9 +20,9 @@ function indymedia_gallery_output($output, $attr, $instance ) {
 			$attachments[$val->ID] = $_attachments[$key];
 		}
 	} elseif ( ! empty( $attr['exclude'] ) ) {
-		$attachments = get_children( array( 'post_parent' => $id, 'exclude' => $attr['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $attr['order'], 'orderby' => $attr['orderby'] ) );
+		$attachments = get_children( array( 'post_parent' => $attr['id'], 'exclude' => $attr['exclude'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $attr['order'], 'orderby' => $attr['orderby'] ) );
 	} else {
-		$attachments = get_children( array( 'post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $attr['order'], 'orderby' => $attr['orderby'] ) );
+		$attachments = get_children( array( 'post_parent' => $attr['id'], 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $attr['order'], 'orderby' => $attr['orderby'] ) );
 	}
 
 	if ( empty( $attachments ) ) {
@@ -39,9 +45,8 @@ function indymedia_gallery_output($output, $attr, $instance ) {
 	$slide = reset($attachments);
 
 	$attr = ( trim( $slide->post_excerpt ) ) ? array( 'aria-describedby' => "$selector-$slide->ID" ) : '';
-	$image_data = wp_get_attachment_image_src( $slide->ID, 'medium_large', false );
 
-	$slider .= "<li><a href='" . $image_data[0] . "'>" . wp_get_attachment_image( $slide->ID, 'medium_large', false, $attr ) . "</a></li>";
+	$slider .= "<li>" . wp_get_attachment_image( $slide->ID, 'medium_large', false, $attr ) . "</li>";
 	$carrousel .= "<li>" . wp_get_attachment_image($slide->ID, 'thumbnail', false, $attr ) . "</li>";
 
 	$slider .= "</ul></div>";
@@ -104,9 +109,7 @@ jQuery(window).on('load',function() {
 				{$selector}_slideNav.append({$selector}_imgNav);
 
 				var {$selector}_slideMain = jQuery('<li />');
-				var {$selector}_linkMain = jQuery('<a href=' + {$selector}_srcMain + ' />');
-				{$selector}_linkMain.append({$selector}_imgMain);
-				{$selector}_slideMain.append({$selector}_linkMain);
+				{$selector}_slideMain.append({$selector}_imgMain);
 
 				{$selector}_sliderNav.addSlide({$selector}_slideNav);
 				{$selector}_sliderMain.addSlide({$selector}_slideMain);
