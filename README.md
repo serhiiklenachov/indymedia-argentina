@@ -16,5 +16,4 @@ Child-theme de [Viral](https://es-ar.wordpress.org/themes/viral/) para el sitio 
 * Clonar repositorio en la carpeta *wp-content/themes*
 
 ## Screenshot
-(desactualizado)
 ![Indymedia Argentina](/screenshot.png)
