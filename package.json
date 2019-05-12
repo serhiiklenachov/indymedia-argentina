@@ -1,0 +1,25 @@
+{
+  "name": "indymedia",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+    "del": "^4.1.1",
+    "eslint-config-wordpress": "^2.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-gzip": "^1.4.2",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sftp": "^0.1.5",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-terser": "^1.1.7",
+    "yargs": "^13.2.2"
+  },
+  "dependencies": {},
+  "license": "GPL-3.0",
+  "author": "Roberto Vaccaro <roberto.vaccaro@gmail.com>"
+}

@@ -13,7 +13,7 @@ include get_stylesheet_directory() . '/customizer/customizer.php';
 if ( !function_exists( 'indymedia_theme_setup' ) ) {
 	function indymedia_theme_setup() {
 		wp_enqueue_style( 'viral-style', trailingslashit( get_template_directory_uri() ) . 'style.css', array( 'font-awesome','owl-carousel' ) );
-		wp_enqueue_style( 'font-awesome', get_stylesheet_directory_uri() . '/css/font-awesome.min.css', array(), '4.7.0' );
+		wp_enqueue_style( 'font-awesome', get_stylesheet_directory_uri() . '/styles/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'fancybox-style', get_stylesheet_directory_uri() . '/vendor/fancybox/jquery.fancybox.min.css', array(), '3.2.10', 'screen' );
 		wp_enqueue_style( 'flexslider-style', get_stylesheet_directory_uri() . '/vendor/flexslider/flexslider.css', array(), '2.7.0', 'screen' );
 		wp_style_add_data( 'flexslider-style', 'rtl', get_stylesheet_directory_uri() . '/vendor/flexslider/flexslider-rtl-min.css', array(), '2.7.0', 'screen' );

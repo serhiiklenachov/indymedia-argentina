@@ -240,12 +240,12 @@ function indymedia_category_register_settings( $wp_customize, $category ) {
 }
 
 function indymedia_customize_preview() {
-	wp_enqueue_script( 'indymedia_customizer_preview', get_stylesheet_directory_uri() . '/js/preview.js', array( 'customize-preview' ), '20180224', true );
+	wp_enqueue_script( 'indymedia_customizer_preview', get_stylesheet_directory_uri() . '/scripts/preview.js', array( 'customize-preview' ), '20180224', true );
 }
 add_action( 'customize_preview_init', 'indymedia_customize_preview' );
 
 function indymedia_customizer_controls() {
-	wp_register_script( 'indymedia_customizer', get_stylesheet_directory_uri() . '/js/customizer.js', array(), null, true );
+	wp_register_script( 'indymedia_customizer', get_stylesheet_directory_uri() . '/scripts/customizer.js', array(), null, true );
 
 	$data = array();
 
@@ -380,7 +380,9 @@ function indymedia_customizer_font_frontend() {
 		get_theme_mod( 'indymedia_top_header_font' ),
 		get_theme_mod( 'indymedia_main_navigation_font' ),
 		get_theme_mod( 'indymedia_ticker_font' ),
-	) ) );
+  ) ) );
+  
+  var_dump($fonts);
 
 	for ( $i = 0; $i < count($fonts); $i++) {
 		$name = explode( ':', $fonts[$i] );
