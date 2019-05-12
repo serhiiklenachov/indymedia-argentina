@@ -368,23 +368,23 @@ function indymedia_customizer_controls() {
 add_action( 'customize_controls_enqueue_scripts', 'indymedia_customizer_controls' );
 
 function indymedia_customizer_font_frontend() {
+  $defaultFont = 'Roboto:400,400italic,700,700italic';
+
 	$fonts = array_values( array_unique( array(
-		get_theme_mod( 'indymedia_section_tag_font' ),
-		get_theme_mod( 'indymedia_hero_title_font' ),
-		get_theme_mod( 'indymedia_block_title_font' ),
-		get_theme_mod( 'indymedia_post_title_font' ),
-		get_theme_mod( 'indymedia_post_excerpt_font' ),
-		get_theme_mod( 'indymedia_widget_title_font' ),
-		get_theme_mod( 'indymedia_entry_title_font' ),
-		get_theme_mod( 'indymedia_entry_content_font' ),
-		get_theme_mod( 'indymedia_top_header_font' ),
-		get_theme_mod( 'indymedia_main_navigation_font' ),
-		get_theme_mod( 'indymedia_ticker_font' ),
+		get_theme_mod( 'indymedia_section_tag_font', $defaultFont ),
+		get_theme_mod( 'indymedia_hero_title_font', $defaultFont ),
+		get_theme_mod( 'indymedia_block_title_font', $defaultFont ),
+		get_theme_mod( 'indymedia_post_title_font', $defaultFont ),
+		get_theme_mod( 'indymedia_post_excerpt_font', $defaultFont ),
+		get_theme_mod( 'indymedia_widget_title_font', $defaultFont ),
+		get_theme_mod( 'indymedia_entry_title_font', $defaultFont ),
+		get_theme_mod( 'indymedia_entry_content_font', $defaultFont ),
+		get_theme_mod( 'indymedia_top_header_font', $defaultFont ),
+		get_theme_mod( 'indymedia_main_navigation_font', $defaultFont ),
+		get_theme_mod( 'indymedia_ticker_font', $defaultFont ),
   ) ) );
   
-  var_dump($fonts);
-
-	for ( $i = 0; $i < count($fonts); $i++) {
+  for ( $i = 0; $i < count($fonts); $i++) {
 		$name = explode( ':', $fonts[$i] );
 
 		if ($name[0] == 'Roboto Condensed' || $name[0] == 'Roboto') {
