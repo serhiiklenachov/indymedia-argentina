@@ -35,10 +35,20 @@ exports.build = gulp.series(
   )
 );
 
-function watch() {
-  gulp.watch(
-    
-  )
+exports.watch = () => {
+  gulp.watch( 'src/fonts/**/*', fonts );
+  gulp.watch( 'src/images/screenshot.{png,jpg,jpeg}', imagesScreenshot );
+  gulp.watch([
+    'src/images/**/*',
+    '!src/images/screenshot.{png,jpg,jpeg}'
+  ], imagesOthers );
+  gulp.watch( 'src/scripts/**/*.js', gulp.series( linter, scripts ) );
+  gulp.watch( 'src/styles/style.scss', stylesMain );
+  gulp.watch([
+    'src/styles/*.scss',
+    '!src/styles/style.scss'
+  ], stylesOthers );
+  gulp.watch( 'src/styles/*.css', stylesDirect );
+  gulp.watch( 'src/templates/**/*.php', templates );
+  gulp.watch( 'src/vendor/**/*', vendor );
 }
-
-exports.watch = watch;
