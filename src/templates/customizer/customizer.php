@@ -165,10 +165,11 @@ function indymedia_customize_register( $wp_customize ) {
 		}
 	}
 
+	$wp_customize->remove_setting('viral_social_google_plus');
+
 	/**
 	 * Controls
 	 */
-
 	$wp_customize->add_control(
 		new \CustomizeImageGalleryControl\Control(
 			$wp_customize,
@@ -181,6 +182,8 @@ function indymedia_customize_register( $wp_customize ) {
 			)
 		)
 	);
+
+	$wp_customize->remove_control('viral_social_google_plus');
 }
 
 add_action( 'customize_register', 'indymedia_customize_register' );
