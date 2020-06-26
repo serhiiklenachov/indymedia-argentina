@@ -44,5 +44,6 @@ Indymedia Argentina<span class="sep">  </span>
 
 <?php wp_footer(); ?>
 
+<!-- <?php echo get_num_queries(); ?> queries in <?php timer_stop(1,3); ?> seconds -->
 </body>
 </html>
