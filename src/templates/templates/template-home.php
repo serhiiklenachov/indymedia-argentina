@@ -45,7 +45,7 @@ get_header(); ?>
 		<?php 
 		} ?>
 
-	<?php dynamic_sidebar('indymedia-frontpage') ?>
+	<?php dynamic_sidebar('indymedia-frontpage'); ?>
 
 	<?php get_template_part('home-parts/top-section'); ?>
 	</div>
