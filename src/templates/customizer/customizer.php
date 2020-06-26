@@ -186,7 +186,7 @@ function indymedia_customize_register( $wp_customize ) {
 	$wp_customize->remove_control('viral_social_google_plus');
 }
 
-add_action( 'customize_register', 'indymedia_customize_register' );
+add_action( 'customize_register', 'indymedia_customize_register', 20 );
 
 function indymedia_category_register_settings( $wp_customize, $category ) {
 	$wp_customize->add_setting(
