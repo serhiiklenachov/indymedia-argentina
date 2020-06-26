@@ -97,6 +97,6 @@ function control_indymedia_repeater_load_scripts() {
 	wp_register_style( 'control-indymedia-repeater', get_stylesheet_directory_uri() . '/styles/control-repeater.css', array(), null );
 	wp_enqueue_style( 'control-indymedia-repeater' );
 
-	wp_enqueue_script( 'control-indymedia-repeater', get_stylesheet_directory_uri() . '/scripts/control-repeater.js', array( 'jquery' ), '1.0.0', true );
+	wp_enqueue_script( 'control-indymedia-repeater', get_stylesheet_directory_uri() . '/scripts/control-repeater.js', array( 'jquery' ), '1.1.0', true );
 }
 add_action( 'customize_controls_enqueue_scripts', 'control_indymedia_repeater_load_scripts' );

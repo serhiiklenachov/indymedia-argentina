@@ -18,6 +18,6 @@ function control_indymedia_editor_print_template() {
 add_action( 'customize_controls_print_footer_scripts', 'control_indymedia_editor_print_template');
 
 function control_indymedia_editor_load_scripts() {
-	wp_enqueue_script( 'control-indymedia-editor', get_stylesheet_directory_uri() . '/scripts/control-editor.js', array(), null, true );
+	wp_enqueue_script( 'control-indymedia-editor', get_stylesheet_directory_uri() . '/scripts/control-editor.js', array(), '1.1.0', true );
 }
 add_action( 'customize_controls_enqueue_scripts', 'control_indymedia_editor_load_scripts' );

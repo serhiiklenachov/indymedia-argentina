@@ -243,12 +243,12 @@ function indymedia_category_register_settings( $wp_customize, $category ) {
 }
 
 function indymedia_customize_preview() {
-	wp_enqueue_script( 'indymedia_customizer_preview', get_stylesheet_directory_uri() . '/scripts/preview.js', array( 'customize-preview' ), '20180224', true );
+	wp_enqueue_script( 'indymedia_customizer_preview', get_stylesheet_directory_uri() . '/scripts/preview.js', array( 'customize-preview' ), '1.1.0', true );
 }
 add_action( 'customize_preview_init', 'indymedia_customize_preview' );
 
 function indymedia_customizer_controls() {
-	wp_register_script( 'indymedia_customizer', get_stylesheet_directory_uri() . '/scripts/customizer.js', array(), null, true );
+	wp_register_script( 'indymedia_customizer', get_stylesheet_directory_uri() . '/scripts/customizer.js', array(), '1.1.0', true );
 
 	$data = array();
 
